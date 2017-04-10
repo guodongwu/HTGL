@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <p>@item.DbName </p>
+    }
+}else{
+    <p>空</p>
+}

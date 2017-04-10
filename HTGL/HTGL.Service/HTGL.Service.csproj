@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{59BED2A8-A507-4DB0-A932-9067BE15A665}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HTGL.Service</RootNamespace>
+    <AssemblyName>HTGL.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseService.cs" />
+    <Compile Include="Implement\SysDictService.cs" />
+    <Compile Include="Implement\SysRoleService.cs" />
+    <Compile Include="Implement\SysUserRoleService.cs" />
+    <Compile Include="Implement\SysUserService.cs" />
+    <Compile Include="Implement\SysDbBackupService.cs" />
+    <Compile Include="Interface\ISysDictService.cs" />
+    <Compile Include="Interface\ISysDbBackupService.cs" />
+    <Compile Include="Interface\ISysUserService.cs" />
+    <Compile Include="Interface\ISysRoleService.cs" />
+    <Compile Include="Interface\ISysUserRoleService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HTGL.Component.Tools\HTGL.Component.Tools.csproj">
+      <Project>{E824EE20-20EE-4A4F-AA4A-80830B7AD867}</Project>
+      <Name>HTGL.Component.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HTGL.Data\HTGL.Data.csproj">
+      <Project>{4150EE35-5197-4AAE-98CA-2777ECA8C421}</Project>
+      <Name>HTGL.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HTGL.Model\HTGL.Model.csproj">
+      <Project>{210b3e3f-5630-476a-997e-f6e735424efc}</Project>
+      <Name>HTGL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HTGL.Repository.EF\HTGL.Repository.EF.csproj">
+      <Project>{C7498D52-425F-4082-8560-416B0FEBF8BE}</Project>
+      <Name>HTGL.Repository.EF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

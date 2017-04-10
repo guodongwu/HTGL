@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="backstage_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Base_Function">
+    <Key>
+      <PropertyRef Name="Function_Id" />
+    </Key>
+    <Property Name="Function_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Add_Time" Type="datetime" />
+    <Property Name="Add_Ip" Type="varchar" MaxLength="20" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Add_User_Id" Type="int" />
+    <Property Name="Modified_User_Id" Type="int" />
+    <Property Name="Modified_Time" Type="datetime" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Base_Menu">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+    </Key>
+    <Property Name="Menu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type" Type="tinyint" />
+    <Property Name="Url" Type="varchar" MaxLength="100" />
+    <Property Name="Icon" Type="varchar" MaxLength="100" />
+    <Property Name="Order" Type="tinyint" />
+    <Property Name="Parent_Menu_Id" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“backstage_db.dbo.Base_Menu_Function”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_Menu_Function">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+      <PropertyRef Name="Function_Id" />
+    </Key>
+    <Property Name="Menu_Id" Type="int" Nullable="false" />
+    <Property Name="Function_Id" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Add_Time" Type="datetime" />
+    <Property Name="Add_Ip" Type="varchar" MaxLength="50" />
+    <Property Name="Add_User_Id" Type="int" />
+    <Property Name="Modified_User_Id" Type="int" />
+    <Property Name="Modified_Time" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Base_Role">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Add_Time" Type="datetime" />
+    <Property Name="Add_Ip" Type="varchar" MaxLength="20" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“backstage_db.dbo.Base_Role_Menu”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="Base_Role_Menu">
+          <Property Name="Role_Id" Type="int" />
+          <Property Name="Menu_Id" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Add_Time" Type="datetime" />
+          <Property Name="Add_Ip" Type="varchar" MaxLength="50" />
+          <Property Name="Add_User_Id" Type="int" />
+          <Property Name="Modified_User_Id" Type="int" />
+          <Property Name="Modified_Time" Type="datetime" />
+        </EntityType>-->
+  <EntityType Name="Base_Setting">
+    <Key>
+      <PropertyRef Name="App_Id" />
+    </Key>
+    <Property Name="App_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="App_Key" Type="varchar" MaxLength="100" />
+    <Property Name="App_Value" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="App_Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Add_Time" Type="datetime" />
+    <Property Name="Add_Ip" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Base_User">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Real_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Id_Card" Type="varchar" MaxLength="20" />
+    <Property Name="Portrait" Type="varchar" MaxLength="100" />
+    <Property Name="Gender" Type="tinyint" />
+    <Property Name="Birthday" Type="datetime" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Nick" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Add_Time" Type="datetime" />
+    <Property Name="Add_Ip" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“backstage_db.dbo.Base_User_Role”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_User_Role">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Role_Id" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Role_Id" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Add_Time" Type="datetime" />
+    <Property Name="Add_IP" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="Add_User_Id" Type="int" />
+    <Property Name="Modified_User_Id" Type="int" />
+    <Property Name="Modified_Time" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="backstage_dbModelStoreContainer">
+    <EntitySet Name="Base_Function" EntityType="Self.Base_Function" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Base_Menu" EntityType="Self.Base_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Base_Role" EntityType="Self.Base_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Base_Setting" EntityType="Self.Base_Setting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Base_User" EntityType="Self.Base_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Base_Menu_Function" EntityType="Self.Base_Menu_Function" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Base_Menu_Function].[Menu_Id] AS [Menu_Id], 
+    [Base_Menu_Function].[Function_Id] AS [Function_Id], 
+    [Base_Menu_Function].[Status] AS [Status], 
+    [Base_Menu_Function].[Add_Time] AS [Add_Time], 
+    [Base_Menu_Function].[Add_Ip] AS [Add_Ip], 
+    [Base_Menu_Function].[Add_User_Id] AS [Add_User_Id], 
+    [Base_Menu_Function].[Modified_User_Id] AS [Modified_User_Id], 
+    [Base_Menu_Function].[Modified_Time] AS [Modified_Time]
+    FROM [dbo].[Base_Menu_Function] AS [Base_Menu_Function]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_User_Role" EntityType="Self.Base_User_Role" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Base_User_Role].[User_Id] AS [User_Id], 
+    [Base_User_Role].[Role_Id] AS [Role_Id], 
+    [Base_User_Role].[Status] AS [Status], 
+    [Base_User_Role].[Add_Time] AS [Add_Time], 
+    [Base_User_Role].[Add_IP] AS [Add_IP], 
+    [Base_User_Role].[Description] AS [Description], 
+    [Base_User_Role].[Add_User_Id] AS [Add_User_Id], 
+    [Base_User_Role].[Modified_User_Id] AS [Modified_User_Id], 
+    [Base_User_Role].[Modified_Time] AS [Modified_Time]
+    FROM [dbo].[Base_User_Role] AS [Base_User_Role]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

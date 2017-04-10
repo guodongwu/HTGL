@@ -1,0 +1,11 @@
+D:\person\HTGL.UI.Portal\HTGL.Common\bin\Debug\HTGL.Common.dll
+D:\person\HTGL.UI.Portal\HTGL.Common\bin\Debug\HTGL.Common.pdb
+D:\person\HTGL.UI.Portal\HTGL.Common\obj\Debug\HTGL.Common.dll
+D:\person\HTGL.UI.Portal\HTGL.Common\obj\Debug\HTGL.Common.pdb
+D:\person\HTGL\HTGL.Common\bin\Debug\HTGL.Common.dll
+D:\person\HTGL\HTGL.Common\bin\Debug\HTGL.Common.pdb
+D:\person\HTGL\HTGL.Common\obj\Debug\HTGL.Common.dll
+D:\person\HTGL\HTGL.Common\obj\Debug\HTGL.Common.pdb
+D:\person\HTGL\HTGL.Common\obj\Debug\HTGL.Common.csprojResolveAssemblyReference.cache
+D:\person\HTGL\HTGL.Common\bin\Debug\Newtonsoft.Json.dll
+D:\person\HTGL\HTGL.Common\bin\Debug\Newtonsoft.Json.xml

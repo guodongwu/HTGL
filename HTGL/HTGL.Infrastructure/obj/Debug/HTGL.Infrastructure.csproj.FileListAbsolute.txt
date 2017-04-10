@@ -1,0 +1,5 @@
+D:\person\HTGL\HTGL.Infrastructure\bin\Debug\HTGL.Infrastructure.dll
+D:\person\HTGL\HTGL.Infrastructure\bin\Debug\HTGL.Infrastructure.pdb
+D:\person\HTGL\HTGL.Infrastructure\obj\Debug\HTGL.Infrastructure.dll
+D:\person\HTGL\HTGL.Infrastructure\obj\Debug\HTGL.Infrastructure.pdb
+D:\person\HTGL\HTGL.Infrastructure\obj\Debug\HTGL.Infrastructure.csprojResolveAssemblyReference.cache

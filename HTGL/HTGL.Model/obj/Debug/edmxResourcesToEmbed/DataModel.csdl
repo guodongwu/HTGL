@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="backstage_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DefaultDbContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Base_Function" EntityType="backstage_dbModel.Base_Function" />
+    <EntitySet Name="Base_Menu" EntityType="backstage_dbModel.Base_Menu" />
+    <EntitySet Name="Base_Role" EntityType="backstage_dbModel.Base_Role" />
+    <EntitySet Name="Base_Setting" EntityType="backstage_dbModel.Base_Setting" />
+    <EntitySet Name="Base_User" EntityType="backstage_dbModel.Base_User" />
+    <EntitySet Name="Base_Menu_Function" EntityType="backstage_dbModel.Base_Menu_Function" />
+    <EntitySet Name="Base_User_Role" EntityType="backstage_dbModel.Base_User_Role" />
+  </EntityContainer>
+  <EntityType Name="Base_Function">
+    <Key>
+      <PropertyRef Name="Function_Id" />
+    </Key>
+    <Property Name="Function_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Add_Time" Type="DateTime" Precision="3" />
+    <Property Name="Add_Ip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Add_User_Id" Type="Int32" />
+    <Property Name="Modified_User_Id" Type="Int32" />
+    <Property Name="Modified_Time" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_Menu">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+    </Key>
+    <Property Name="Menu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Byte" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Order" Type="Byte" />
+    <Property Name="Parent_Menu_Id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Base_Role">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Add_Time" Type="DateTime" Precision="3" />
+    <Property Name="Add_Ip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Base_Setting">
+    <Key>
+      <PropertyRef Name="App_Id" />
+    </Key>
+    <Property Name="App_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="App_Key" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="App_Value" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="App_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Add_Time" Type="DateTime" Precision="3" />
+    <Property Name="Add_Ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Base_User">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Real_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Card" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Portrait" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="Byte" />
+    <Property Name="Birthday" Type="DateTime" Precision="3" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Nick" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Add_Time" Type="DateTime" Precision="3" />
+    <Property Name="Add_Ip" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_Menu_Function">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+      <PropertyRef Name="Function_Id" />
+    </Key>
+    <Property Name="Menu_Id" Type="Int32" Nullable="false" />
+    <Property Name="Function_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="Add_Time" Type="DateTime" Precision="3" />
+    <Property Name="Add_Ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Add_User_Id" Type="Int32" />
+    <Property Name="Modified_User_Id" Type="Int32" />
+    <Property Name="Modified_Time" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_User_Role">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Role_Id" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="Role_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Add_Time" Type="DateTime" Precision="3" />
+    <Property Name="Add_IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Add_User_Id" Type="Int32" />
+    <Property Name="Modified_User_Id" Type="Int32" />
+    <Property Name="Modified_Time" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

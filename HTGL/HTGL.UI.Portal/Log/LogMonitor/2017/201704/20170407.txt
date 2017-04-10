@@ -1,0 +1,113 @@
+
+ 
+记录时间：2017-04-07 16:19:16,013 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,SysDbBackupRepository,ISysDictRepository,SysDictRepository,ISysFunctionRepository,SysFunctionRepository,ISysLogRepository,SysLogRepository,ISysMenuRepository,SysMenuRepository,ISysMenuFunctionRepository,SysMenuFunctionRepository,ISysOrganizeRepository,SysOrganizeRepository,ISysRoleRepository,SysRoleRepository,ISysRoleMenuRepository,SysRoleMenuRepository,ISysUserRepository,SysUserRepository,ISysUserRoleRepository,SysUserRoleRepository,IUnitOfWork,EFUnitOfWork,IRepository`2,BaseRepository`2,ISysDictService,SysDictService,ISysRoleService,SysRoleService,ISysUserRoleService,SysUserRoleService,ISysUserService,SysUserService,ISysDbBackupService,SysDbBackupService,
+ 
+
+ 
+记录时间：2017-04-07 16:21:52,569 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,	
+SysDbBackupRepository,	
+ISysDictRepository,	
+SysDictRepository,	
+ISysFunctionRepository,	
+SysFunctionRepository,	
+ISysLogRepository,	
+SysLogRepository,	
+ISysMenuRepository,	
+SysMenuRepository,	
+ISysMenuFunctionRepository,	
+SysMenuFunctionRepository,	
+ISysOrganizeRepository,	
+SysOrganizeRepository,	
+ISysRoleRepository,	
+SysRoleRepository,	
+ISysRoleMenuRepository,	
+SysRoleMenuRepository,	
+ISysUserRepository,	
+SysUserRepository,	
+ISysUserRoleRepository,	
+SysUserRoleRepository,	
+IUnitOfWork,	
+EFUnitOfWork,	
+IRepository`2,	
+BaseRepository`2,	
+ISysDictService,	
+SysDictService,	
+ISysRoleService,	
+SysRoleService,	
+ISysUserRoleService,	
+SysUserRoleService,	
+ISysUserService,	
+SysUserService,	
+ISysDbBackupService,	
+SysDbBackupService,	
+
+ 
+
+ 
+记录时间：2017-04-07 16:52:41,547 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,SysDbBackupRepository,ISysDictRepository,SysDictRepository,ISysFunctionRepository,SysFunctionRepository,ISysLogRepository,SysLogRepository,ISysMenuRepository,SysMenuRepository,ISysMenuFunctionRepository,SysMenuFunctionRepository,ISysOrganizeRepository,SysOrganizeRepository,ISysRoleRepository,SysRoleRepository,ISysRoleMenuRepository,SysRoleMenuRepository,ISysUserRepository,SysUserRepository,ISysUserRoleRepository,SysUserRoleRepository,ISysDictService,SysDictService,ISysRoleService,SysRoleService,ISysUserRoleService,SysUserRoleService,ISysUserService,SysUserService,ISysDbBackupService,SysDbBackupService,IUnitOfWork,EFUnitOfWork,IRepository`2,BaseRepository`2,
+ 
+
+ 
+记录时间：2017-04-07 16:52:41,552 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：HTGL.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.WorkflowServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,HTGL.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,System.Web.DynamicData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a,System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,HTGL.Component.Tools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584,Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.ApplicationServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed,System.ServiceModel.Activation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,App_global.asax.i6xxgbtj, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null,Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,Autofac.Integration.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da,System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,WebGrease, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.ComponentModel.DataAnnotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,HTGL.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da,Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.IO, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.VisualStudio.Web.PageInspector.Loader, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,HTGL.Repository.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Data.DataSetExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.Net.Http.WebRequest, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.ServiceModel.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,HTGL.UI.Portal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,System.Web.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.ServiceModel.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,
+ 
+
+ 
+记录时间：2017-04-07 16:56:08,825 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,SysDbBackupRepository,ISysDictRepository,SysDictRepository,ISysFunctionRepository,SysFunctionRepository,ISysLogRepository,SysLogRepository,ISysMenuRepository,SysMenuRepository,ISysMenuFunctionRepository,SysMenuFunctionRepository,ISysOrganizeRepository,SysOrganizeRepository,ISysRoleRepository,SysRoleRepository,ISysRoleMenuRepository,SysRoleMenuRepository,ISysUserRepository,SysUserRepository,ISysUserRoleRepository,SysUserRoleRepository,ISysDictService,SysDictService,ISysRoleService,SysRoleService,ISysUserRoleService,SysUserRoleService,ISysUserService,SysUserService,ISysDbBackupService,SysDbBackupService,IUnitOfWork,EFUnitOfWork,IRepository`2,BaseRepository`2,
+ 
+
+ 
+记录时间：2017-04-07 16:56:08,836 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：HTGL.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.WorkflowServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,HTGL.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,System.Web.DynamicData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a,System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,HTGL.Component.Tools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584,Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.ApplicationServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed,System.ServiceModel.Activation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,App_global.asax.d8qia3lm, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null,Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,Autofac.Integration.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da,System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,WebGrease, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.ComponentModel.DataAnnotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,HTGL.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da,Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.IO, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.VisualStudio.Web.PageInspector.Loader, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,HTGL.Repository.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Data.DataSetExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.Net.Http.WebRequest, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,System.ServiceModel.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,HTGL.UI.Portal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null,System.Web.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a,Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,System.ServiceModel.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35,EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089,
+ 
+
+ 
+记录时间：2017-04-07 17:06:20,995 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,SysDbBackupRepository,ISysDictRepository,SysDictRepository,ISysFunctionRepository,SysFunctionRepository,ISysLogRepository,SysLogRepository,ISysMenuRepository,SysMenuRepository,ISysMenuFunctionRepository,SysMenuFunctionRepository,ISysOrganizeRepository,SysOrganizeRepository,ISysRoleRepository,SysRoleRepository,ISysRoleMenuRepository,SysRoleMenuRepository,ISysUserRepository,SysUserRepository,ISysUserRoleRepository,SysUserRoleRepository,ISysDictService,SysDictService,ISysRoleService,SysRoleService,ISysUserRoleService,SysUserRoleService,ISysUserService,SysUserService,ISysDbBackupService,SysDbBackupService,IUnitOfWork,EFUnitOfWork,IRepository`2,BaseRepository`2,
+ 
+
+ 
+记录时间：2017-04-07 17:10:16,001 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,SysDbBackupRepository,ISysDictRepository,SysDictRepository,ISysFunctionRepository,SysFunctionRepository,ISysLogRepository,SysLogRepository,ISysMenuRepository,SysMenuRepository,ISysMenuFunctionRepository,SysMenuFunctionRepository,ISysOrganizeRepository,SysOrganizeRepository,ISysRoleRepository,SysRoleRepository,ISysRoleMenuRepository,SysRoleMenuRepository,ISysUserRepository,SysUserRepository,ISysUserRoleRepository,SysUserRoleRepository,ISysDictService,SysDictService,ISysRoleService,SysRoleService,ISysUserRoleService,SysUserRoleService,ISysUserService,SysUserService,ISysDbBackupService,SysDbBackupService,IUnitOfWork,EFUnitOfWork,IRepository`2,BaseRepository`2,
+ 
+
+ 
+记录时间：2017-04-07 17:13:01,034 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,SysDbBackupRepository,ISysDictRepository,SysDictRepository,ISysFunctionRepository,SysFunctionRepository,ISysLogRepository,SysLogRepository,ISysMenuRepository,SysMenuRepository,ISysMenuFunctionRepository,SysMenuFunctionRepository,ISysOrganizeRepository,SysOrganizeRepository,ISysRoleRepository,SysRoleRepository,ISysRoleMenuRepository,SysRoleMenuRepository,ISysUserRepository,SysUserRepository,ISysUserRoleRepository,SysUserRoleRepository,ISysDictService,SysDictService,ISysRoleService,SysRoleService,ISysUserRoleService,SysUserRoleService,ISysUserService,SysUserService,ISysDbBackupService,SysDbBackupService,IUnitOfWork,EFUnitOfWork,IRepository`2,BaseRepository`2,
+ 
+
+ 
+记录时间：2017-04-07 17:16:01,344 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,SysDbBackupRepository,ISysDictRepository,SysDictRepository,ISysFunctionRepository,SysFunctionRepository,ISysLogRepository,SysLogRepository,ISysMenuRepository,SysMenuRepository,ISysMenuFunctionRepository,SysMenuFunctionRepository,ISysOrganizeRepository,SysOrganizeRepository,ISysRoleRepository,SysRoleRepository,ISysRoleMenuRepository,SysRoleMenuRepository,ISysUserRepository,SysUserRepository,ISysUserRoleRepository,SysUserRoleRepository,ISysDictService,SysDictService,ISysRoleService,SysRoleService,ISysUserRoleService,SysUserRoleService,ISysUserService,SysUserService,ISysDbBackupService,SysDbBackupService,IUnitOfWork,EFUnitOfWork,IRepository`2,BaseRepository`2,,HTGL.UI.Portal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+ 
+
+ 
+记录时间：2017-04-07 17:21:07,578 
+线程ID:[1] 
+日志级别：  INFO  
+跟踪描述：ISysDbBackupRepository,SysDbBackupRepository,ISysDictRepository,SysDictRepository,ISysFunctionRepository,SysFunctionRepository,ISysLogRepository,SysLogRepository,ISysMenuRepository,SysMenuRepository,ISysMenuFunctionRepository,SysMenuFunctionRepository,ISysOrganizeRepository,SysOrganizeRepository,ISysRoleRepository,SysRoleRepository,ISysRoleMenuRepository,SysRoleMenuRepository,ISysUserRepository,SysUserRepository,ISysUserRoleRepository,SysUserRoleRepository,ISysDictService,SysDictService,ISysRoleService,SysRoleService,ISysUserRoleService,SysUserRoleService,ISysUserService,SysUserService,ISysDbBackupService,SysDbBackupService,IUnitOfWork,EFUnitOfWork,IRepository`2,BaseRepository`2,
+ 

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="backstage_dbModelStoreContainer" CdmEntityContainer="DefaultDbContext">
+    <EntitySetMapping Name="Base_Function">
+      <EntityTypeMapping TypeName="backstage_dbModel.Base_Function">
+        <MappingFragment StoreEntitySet="Base_Function">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Modified_Time" ColumnName="Modified_Time" />
+          <ScalarProperty Name="Modified_User_Id" ColumnName="Modified_User_Id" />
+          <ScalarProperty Name="Add_User_Id" ColumnName="Add_User_Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Add_Ip" ColumnName="Add_Ip" />
+          <ScalarProperty Name="Add_Time" ColumnName="Add_Time" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Function_Id" ColumnName="Function_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_Menu">
+      <EntityTypeMapping TypeName="backstage_dbModel.Base_Menu">
+        <MappingFragment StoreEntitySet="Base_Menu">
+          <ScalarProperty Name="Parent_Menu_Id" ColumnName="Parent_Menu_Id" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_Role">
+      <EntityTypeMapping TypeName="backstage_dbModel.Base_Role">
+        <MappingFragment StoreEntitySet="Base_Role">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Add_Ip" ColumnName="Add_Ip" />
+          <ScalarProperty Name="Add_Time" ColumnName="Add_Time" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_Setting">
+      <EntityTypeMapping TypeName="backstage_dbModel.Base_Setting">
+        <MappingFragment StoreEntitySet="Base_Setting">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Add_Ip" ColumnName="Add_Ip" />
+          <ScalarProperty Name="Add_Time" ColumnName="Add_Time" />
+          <ScalarProperty Name="App_Type" ColumnName="App_Type" />
+          <ScalarProperty Name="App_Value" ColumnName="App_Value" />
+          <ScalarProperty Name="App_Key" ColumnName="App_Key" />
+          <ScalarProperty Name="App_Id" ColumnName="App_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_User">
+      <EntityTypeMapping TypeName="backstage_dbModel.Base_User">
+        <MappingFragment StoreEntitySet="Base_User">
+          <ScalarProperty Name="Add_Ip" ColumnName="Add_Ip" />
+          <ScalarProperty Name="Add_Time" ColumnName="Add_Time" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Nick" ColumnName="Nick" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Portrait" ColumnName="Portrait" />
+          <ScalarProperty Name="Id_Card" ColumnName="Id_Card" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Real_Name" ColumnName="Real_Name" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_Menu_Function">
+      <EntityTypeMapping TypeName="backstage_dbModel.Base_Menu_Function">
+        <MappingFragment StoreEntitySet="Base_Menu_Function">
+          <ScalarProperty Name="Modified_Time" ColumnName="Modified_Time" />
+          <ScalarProperty Name="Modified_User_Id" ColumnName="Modified_User_Id" />
+          <ScalarProperty Name="Add_User_Id" ColumnName="Add_User_Id" />
+          <ScalarProperty Name="Add_Ip" ColumnName="Add_Ip" />
+          <ScalarProperty Name="Add_Time" ColumnName="Add_Time" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Function_Id" ColumnName="Function_Id" />
+          <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_User_Role">
+      <EntityTypeMapping TypeName="backstage_dbModel.Base_User_Role">
+        <MappingFragment StoreEntitySet="Base_User_Role">
+          <ScalarProperty Name="Modified_Time" ColumnName="Modified_Time" />
+          <ScalarProperty Name="Modified_User_Id" ColumnName="Modified_User_Id" />
+          <ScalarProperty Name="Add_User_Id" ColumnName="Add_User_Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Add_IP" ColumnName="Add_IP" />
+          <ScalarProperty Name="Add_Time" ColumnName="Add_Time" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
