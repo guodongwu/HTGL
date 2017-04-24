@@ -55,7 +55,7 @@
                         return;
                     }
                     else if (result == "Success")
-                        location.href = "@Url.Content("~/Manage/Index")";
+                        location.href = '@Url.Content("~/Manage/Index")';
                 },
                 error: function (d, c, e) {
                     $.ligerDialog.alert('发送系统错误,请与系统管理员联系' + e, '提示消息', 'error');

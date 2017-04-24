@@ -9,7 +9,7 @@ using HTGL.Service.Interface;
 
 namespace HTGL.UI.Portal.Areas.Cms.Controllers
 {
-    public class SysDbBackupController :Controller
+    public class SysDbBackupController :BaseController
     {
         ISysDbBackupService _sysDbBackupService;
         public SysDbBackupController(ISysDbBackupService sysDbBackupService)

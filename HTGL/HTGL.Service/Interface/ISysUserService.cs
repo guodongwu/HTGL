@@ -28,6 +28,7 @@ namespace HTGL.Service.Interface
 
 
         SysUser Login(string UserName, string Password);
+        bool ChangePassword(SysUserVM request, int userId);
     }
 }
 

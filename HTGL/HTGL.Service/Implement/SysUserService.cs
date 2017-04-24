@@ -95,6 +95,20 @@ namespace HTGL.Service.Implement
             Password = MD5Helper.ConvertMD5(MD5Helper.ConvertMD5(Password));
             return FindBy(p => p.UserName == UserName && p.Password == Password);
         }
+
+        public bool ChangePassword(SysUserVM request, int userId)
+        {
+            SysUser user = FindBy(p => p.UserId == userId);
+            if (MD5Helper.ConvertMD5(user.Password) ==
+                MD5Helper.ConvertMD5(request.OldPassord))
+            {
+                user.Password = request.NewPassword;
+                _sysUserRepository.Update(user);
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
 

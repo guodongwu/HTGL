@@ -147,6 +147,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Cms\CmsAreaRegistration.cs" />
+    <Compile Include="Areas\Cms\Controllers\BaseController.cs" />
     <Compile Include="Areas\Cms\Controllers\ManageController.cs" />
     <Compile Include="Areas\Cms\Controllers\SysDbBackupController.cs" />
     <Compile Include="Common\AuthHelper.cs" />
@@ -2095,6 +2096,7 @@
     <Content Include="Areas\Cms\Views\Manage\Index.cshtml" />
     <Content Include="Content\ligerUI\skins\icons\新建 Microsoft Office Excel 工作表.xlsx" />
     <Content Include="Config\log4net.config" />
+    <Content Include="Areas\Cms\Views\Manage\Welcome.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

@@ -92,6 +92,7 @@
     <Compile Include="Extensions\ExpressionExtension.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="helpers\FileHelper.cs" />
     <Compile Include="helpers\ImageThumbnailMake.cs" />
     <Compile Include="helpers\AutofacHelper.cs" />
     <Compile Include="helpers\CacheHelper.cs" />

@@ -71,6 +71,9 @@ namespace HTGL.UI.Portal.Common
             return null;
 
         }
+
+
+
         public class UserInfo
         {
             public int UserId { get; set; }
