@@ -1,7 +1,4 @@
-﻿@{
-    Layout = null;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>后台权限管理系统</title>
@@ -51,17 +48,17 @@
 
         //登录
         function f_login() {
-            location.href = "/Manage/Login";
+            location.href = "/Cms/Manage/Login";
         }
         //退出
         function f_logout() {
             $.ligerDialog.confirm('您确定要退出么？', function (yes) {
                 $.ajax({
-                    url: '/Manage/Logout',
+                    url: '/Cms/Manage/Logout',
                     dataType: 'text',
                     type: 'post',
                     success: function () {
-                        location.href = "/Manage/Login";
+                        location.href = "/Cms/Manage/Login";
                     },
                     error: function (message) {
                         iTools.showError(message);
@@ -121,7 +118,7 @@
                 var LoginPassword = $("#NewPassword").val();
                 if (changePasswordPanle.valid()) {
                     $.ajax({
-                        url: '/Manage/ChangePassword',
+                        url: '/Cms/Manage/ChangePassword',
                         dataType: 'json',
                         type: 'post',
                         data: { OldPassword: OldPassword, NewPassword: LoginPassword },
@@ -178,7 +175,7 @@
 
             var mainmenu = $("#mainmenu");
 
-            $.getJSON('@Url.Content("~/Manage/GetMenus?rnd=")' + Math.random(), function (menus) {
+            $.getJSON('@Url.Content("~/Cms/Manage/GetMenus?rnd=")' + Math.random(), function (menus) {
 
                 $(menus).each(function (i, menu) {
                     var item = $('<div title="' + menu.ModuleName + '"><ul class="menulist"></ul></div>');
@@ -205,7 +202,7 @@
             });
 
             $.ajax({
-                url: '@Url.Content("~/Manage/GetCurrentUser")',
+                url: '@Url.Content("~/Cms/Manage/GetCurrentUser")',
                 success: function (user) {
                     // $(".l-topmenu-username").html(user.Title + "，");
                     $("#labelusername").html(user.Title + ",");

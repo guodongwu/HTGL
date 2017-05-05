@@ -50,12 +50,16 @@ namespace HTGL.Model
         /// <summary>  
         /// 排序  
         /// </summary>      
-        public byte? Order { get; set; }
+        public byte? Sort { get; set; }
 
         /// <summary>  
         /// 上级菜单  
         /// </summary>      
         public int? ParentMenuId { get; set; }
+        /// <summary>
+        /// 菜单的控制器
+        /// </summary>
+        public string MenuController { get; set; }
     }
 
 }

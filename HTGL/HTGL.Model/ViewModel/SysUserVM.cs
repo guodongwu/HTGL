@@ -143,6 +143,9 @@ namespace HTGL.Model
         public string OldPassord { get; set; }
         public string NewPassword { get; set; }
         public string CheckCode { get; set; }
+
+        public string CurrentRole { get; set; }
+
         public SysUserVM(HttpContextBase context)
         {
             UserName = context.Request["UserName"];
@@ -150,6 +153,7 @@ namespace HTGL.Model
             OldPassord = context.Request["OldPassword"];
             NewPassword = context.Request["NewPassword"];
             CheckCode = context.Request["CheckCode"];
+            CurrentRole = context.Request["Role"];
         }
         /// <summary>
         /// 验证用户名请求构造

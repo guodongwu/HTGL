@@ -8,7 +8,7 @@
 <head>
     <title>登录系统</title>
     <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/css/bootstrap-responsive.min.css") rel="stylesheet" />
+    <link href="@Url.Content("~/Content/css/bootstrap-responsive.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/css/unicorn.login.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/ligerUI/skins/Aqua/css/ligerui-all.css")" rel="stylesheet" type="text/css" />
 
@@ -46,7 +46,7 @@
             $.ajax({
                 type: 'post',
                 dataType: 'text',
-                url: '@Url.Content("~/Manage/LoginAndRedirect")',
+                url: '@Url.Content("~/Cms/Manage/LoginAndRedirect")',
                 data: { UserName: $("#username").val(), Password: $("#userpass").val() },
                 success: function (result) {
                     if (result == "Error") {
@@ -55,7 +55,7 @@
                         return;
                     }
                     else if (result == "Success")
-                        location.href = '@Url.Content("~/Manage/Index")';
+                        location.href = '@Url.Content("~/Cms/Manage/Index")';
                 },
                 error: function (d, c, e) {
                     $.ligerDialog.alert('发送系统错误,请与系统管理员联系' + e, '提示消息', 'error');

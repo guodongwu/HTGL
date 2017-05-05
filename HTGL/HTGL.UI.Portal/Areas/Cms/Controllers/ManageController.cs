@@ -16,8 +16,8 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
     {
 
 
-        ISysUserService _sysUserService;
-        ISysUserRoleService _sysUserRoleService;
+        private readonly ISysUserService _sysUserService;
+        private readonly ISysUserRoleService _sysUserRoleService;
         public ManageController(
             ISysUserService sysUserService
             , ISysUserRoleService sysUserRoleService
@@ -32,6 +32,10 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
 
 
         public ActionResult Login()
+        {
+            return View();
+        }
+        public ActionResult Logout()
         {
             return View();
         }
@@ -53,10 +57,19 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
                     Nick = user.Nick,
                     UserName = user.UserName
                 };
-                string userRoles = _sysUserRoleService.GetUserAllRole(user.UserId);
+                string userRoles = _sysUserRoleService.GetUserAllRole(user.UserId); //获取所有角色和当前角色
+                if (string.IsNullOrEmpty(request.CurrentRole))
+                {
+                    if (!string.IsNullOrEmpty(userRoles) && !userRoles.Contains(',')) //不包含，意味着只有一个
+                        userinfo.CurrentRole = userRoles;
+                }
+                else
+                {
+                    userinfo.CurrentRole = request.CurrentRole;
+                }
                 userinfo.Roles = userRoles;
                 AuthHelper.Authenticate(userinfo);
-                //UserOperateLogHelper.WriteOperateLog("[用户登录] 登陆成功");
+
                 return Content(OperationResultType.Success.ToString());
             }
             else
@@ -85,8 +98,13 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
         public ActionResult GetMenus()
         {
 
+            var userinfo = GetUserInfo();
 
-          
+            int currentRole = int.Parse(userinfo.CurrentRole);
+            //序列化json数据并返回给前台
+            return Json(
+                _sysUserRoleService.GetUserPermissionMenus(currentRole, userinfo.UserId), JsonRequestBehavior.AllowGet
+                );
             return View();
         }
         #endregion

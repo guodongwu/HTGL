@@ -104,6 +104,14 @@ namespace HTGL.Service.Implement
             }
             return rolesStr;
         }
+
+
+        public List<SysMenu> GetUserPermissionMenus(int roleId, int userId)
+        {
+            var userRole = _sysUserRoleRepository.Entities.Where(p => p.Status && p.UserId == userId && p.RoleId == roleId);
+            return null;
+        }
+
     }
 }
 

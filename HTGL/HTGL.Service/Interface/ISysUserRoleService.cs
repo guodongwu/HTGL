@@ -27,6 +27,8 @@ namespace HTGL.Service.Interface
         List<SysUserRole> FindAll<Tkey>(Func<SysUserRole, bool> where, Func<SysUserRole, Tkey> orderbyLambda, int pageIndex, int pageSize, bool isAsc, out int total);
 
         string GetUserAllRole(int UserID);
+
+        List<SysMenu> GetUserPermissionMenus(int roleId, int userId);
     }
 }
 

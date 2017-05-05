@@ -2097,18 +2097,29 @@
     <Content Include="Content\ligerUI\skins\icons\新建 Microsoft Office Excel 工作表.xlsx" />
     <Content Include="Config\log4net.config" />
     <Content Include="Areas\Cms\Views\Manage\Welcome.cshtml" />
+    <Content Include="Areas\Cms\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Cms\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\base\base.js" />
+    <Content Include="Scripts\base\common.js" />
+    <Content Include="Scripts\base\ligerui.expand.js" />
+    <Content Include="Scripts\base\tools.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery-validation\jquery.metadata.js" />
+    <Content Include="Scripts\jquery-validation\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery-validation\messages_cn.js" />
+    <Content Include="Scripts\jquery-validation\version.txt" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -2129,7 +2140,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Cms\Models\" />
-    <Folder Include="Areas\Cms\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
