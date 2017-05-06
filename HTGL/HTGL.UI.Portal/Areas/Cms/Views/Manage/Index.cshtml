@@ -119,7 +119,7 @@
                 if (changePasswordPanle.valid()) {
                     $.ajax({
                         url: '/Cms/Manage/ChangePassword',
-                        dataType: 'json',
+                        dataType: 'text',
                         type: 'post',
                         data: { OldPassword: OldPassword, NewPassword: LoginPassword },
                         success: function () {
@@ -128,6 +128,7 @@
                             $(document).unbind('keydown.changepassword');
                         },
                         error: function (message) {
+                            console.info(message);
                             iTools.showError(message);
                         }
                     });
@@ -178,16 +179,16 @@
             $.getJSON('@Url.Content("~/Cms/Manage/GetMenus?rnd=")' + Math.random(), function (menus) {
 
                 $(menus).each(function (i, menu) {
-                    var item = $('<div title="' + menu.ModuleName + '"><ul class="menulist"></ul></div>');
+                    var item = $('<div title="' + menu.Text + '"><ul class="menulist"></ul></div>');
 
-                    $(menu.children).each(function (j, submenu) {
+                    $(menu.Children).each(function (j, submenu) {
                         var subitem = $('<li><img/><span></span><div class="menuitem-l"></div><div class="menuitem-r"></div></li>');
                         subitem.attr({
-                            url: submenu.ModuleLinkUrl,
-                            menuno: submenu.ModuleController
+                            url: submenu.LinkUrl,
+                            menuno: submenu.MenuController
                         });
-                        $("img", subitem).attr("src", (submenu.ModuleIcon || submenu.icon));
-                        $("span", subitem).html(submenu.ModuleName || submenu.text);
+                        $("img", subitem).attr("src", submenu.Icon);
+                        $("span", subitem).html(submenu.Text);
 
                         $("ul:first", item).append(subitem);
                     });

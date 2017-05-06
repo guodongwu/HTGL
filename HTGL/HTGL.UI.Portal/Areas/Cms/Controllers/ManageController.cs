@@ -37,7 +37,9 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
         }
         public ActionResult Logout()
         {
-            return View();
+            AuthHelper.LoginOut();
+
+            return Content(EnumActionExecutedStatus.Success.ToString());
         }
         public ActionResult Index()
         {
@@ -58,10 +60,10 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
                     UserName = user.UserName
                 };
                 string userRoles = _sysUserRoleService.GetUserAllRole(user.UserId); //获取所有角色和当前角色
-                if (string.IsNullOrEmpty(request.CurrentRole))
+                if (request.CurrentRole == 0) //没有传权限
                 {
                     if (!string.IsNullOrEmpty(userRoles) && !userRoles.Contains(',')) //不包含，意味着只有一个
-                        userinfo.CurrentRole = userRoles;
+                        userinfo.CurrentRole =int.Parse(userRoles);
                 }
                 else
                 {
@@ -70,18 +72,20 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
                 userinfo.Roles = userRoles;
                 AuthHelper.Authenticate(userinfo);
 
-                return Content(OperationResultType.Success.ToString());
+                return Content(EnumActionExecutedStatus.Success.ToString());
             }
             else
             {
-                return Content(OperationResultType.Error.ToString());
+                return Content(EnumActionExecutedStatus.Error.ToString());
             }
         }
 
         [Description("[页面加载用户登录信息]获取当前账户登录信息")]
         public ActionResult GetCurrentUser()
         {
-            return Json(GetUserInfo().UserName, JsonRequestBehavior.AllowGet);
+            var userinfo = GetUserInfo();
+            var User = new { Title = userinfo.UserName };
+            return Json(User, JsonRequestBehavior.AllowGet);
         }
         [Description("[页面修改密码]修改密码")]
         public ActionResult ChangePassword()
@@ -89,7 +93,7 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
             SysUserVM request = new SysUserVM(HttpContext);
             var status = _sysUserService.ChangePassword(request, GetUserId());
 
-            return Content(OperationResultType.Success.ToString());
+            return Content(status ? EnumActionExecutedStatus.Success.ToString() : EnumActionExecutedStatus.Error.ToString());
         }
 
         #region 菜单
@@ -100,12 +104,11 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
 
             var userinfo = GetUserInfo();
 
-            int currentRole = int.Parse(userinfo.CurrentRole);
+            int currentRole = userinfo.CurrentRole;
             //序列化json数据并返回给前台
             return Json(
                 _sysUserRoleService.GetUserPermissionMenus(currentRole, userinfo.UserId), JsonRequestBehavior.AllowGet
                 );
-            return View();
         }
         #endregion
 
@@ -114,7 +117,7 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
         [Description("所有列表页面的按钮加载")]
         public ActionResult GetMenuButton()
         {
-
+            //var user = GetUserInfo();
             //return Json(
             //    userService.GetButtons(user.UserRoles, ConfigSettings.GetAdminUserRoleID(),
             //    MenuNo), JsonRequestBehavior.AllowGet

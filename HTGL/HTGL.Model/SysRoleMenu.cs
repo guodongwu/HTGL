@@ -22,17 +22,17 @@ namespace HTGL.Model{
         /// <summary>  
         ///   
         /// </summary>      
-        public int? RoleId {get;set;}
+        public int RoleId {get;set;}
         
         /// <summary>  
         ///   
         /// </summary>      
-        public int? MenuId {get;set;}
+        public int MenuId {get;set;}
         
         /// <summary>  
         ///   
         /// </summary>      
-        public int? Status {get;set;}
+        public bool Status {get;set;}
         
         /// <summary>  
         ///   
@@ -48,8 +48,6 @@ namespace HTGL.Model{
         ///   
         /// </summary>      
         public int? AddUserId {get;set;}
-
-        public List<SysMenu> SysMenus { get; set; }
         
     }
     

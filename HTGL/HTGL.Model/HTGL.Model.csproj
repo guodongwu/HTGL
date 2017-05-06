@@ -78,6 +78,7 @@
     <Compile Include="SysRoleMenu.cs" />
     <Compile Include="SysUser.cs" />
     <Compile Include="SysUserRole.cs" />
+    <Compile Include="ViewModel\SysMenuVM.cs" />
     <Compile Include="ViewModel\SysUserVM.cs" />
   </ItemGroup>
   <ItemGroup>

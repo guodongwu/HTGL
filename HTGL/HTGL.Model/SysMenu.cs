@@ -55,11 +55,25 @@ namespace HTGL.Model
         /// <summary>  
         /// 上级菜单  
         /// </summary>      
-        public int? ParentMenuId { get; set; }
+        public int ParentMenuId { get; set; }
         /// <summary>
         /// 菜单的控制器
         /// </summary>
         public string MenuController { get; set; }
+
+        /// <summary>
+        /// 可用
+        /// </summary>
+        public bool IsVisible { get; set; }
+        /// <summary>
+        /// 是否为菜单
+        /// </summary>
+        public bool IsMenu { get; set; }
+
+        /// <summary>
+        /// 是否为 
+        /// </summary>
+        public bool IsLeaf { get; set; }
     }
 
 }

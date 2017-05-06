@@ -64,4 +64,14 @@ namespace HTGL.Component.Tools
         [Description("操作引发错误。")]
         Error = 64,
     }
+
+    /// <summary>
+    /// Action执行状态
+    /// </summary>
+    public enum EnumActionExecutedStatus
+    {
+        Success = 1,
+        Error = -1,
+        CanNotDelete = -2
+    }
 }

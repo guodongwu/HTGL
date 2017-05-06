@@ -28,7 +28,7 @@ namespace HTGL.Service.Interface
 
         string GetUserAllRole(int UserID);
 
-        List<SysMenu> GetUserPermissionMenus(int roleId, int userId);
+        IEnumerable<SysMenuVM> GetUserPermissionMenus(int roleId, int userId);
     }
 }
 

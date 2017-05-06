@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using HTGL.Service;
 using HTGL.Service.Interface;
@@ -16,14 +17,26 @@ namespace HTGL.Service.Implement
     {
 
         public ISysUserRoleRepository _sysUserRoleRepository;
-        public SysUserRoleService(ISysUserRoleRepository sysUserRoleRepository, IUnitOfWork unitOfWork)
+        public ISysRoleMenuRepository _sysRoleMenuRepository;
+        public ISysMenuRepository _sysMenuRepository;
+        public SysUserRoleService(ISysUserRoleRepository sysUserRoleRepository,
+            ISysRoleMenuRepository sysRoleMenuRepository, ISysMenuRepository sysMenuRepository,
+            IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
             _sysUserRoleRepository = sysUserRoleRepository;
+            _sysRoleMenuRepository = sysRoleMenuRepository;
+            _sysMenuRepository = sysMenuRepository;
         }
         public IQueryable<SysUserRole> SysUserRoles
         {
             get { return _sysUserRoleRepository.Entities; }
+        }
+
+        public IQueryable<SysMenu> SysMenus
+        {
+            get { return _sysMenuRepository.Entities; }
+
         }
 
         public OperationResult Add(SysUserRole sysUserRole)
@@ -105,13 +118,45 @@ namespace HTGL.Service.Implement
             return rolesStr;
         }
 
-
-        public List<SysMenu> GetUserPermissionMenus(int roleId, int userId)
+        public IEnumerable<SysMenuVM> GetUserPermissionMenus(int roleId, int userId)
         {
-            var userRole = _sysUserRoleRepository.Entities.Where(p => p.Status && p.UserId == userId && p.RoleId == roleId);
-            return null;
-        }
+            var roleUser = FindBy(p => p.RoleId == roleId && p.UserId == userId);
+            if (roleUser != null)
+            {
+                var roleMenu = _sysRoleMenuRepository.Entities.Where(p => p.RoleId == roleId).ToList();
+                if (roleMenu.Count > 0)
+                {
+                    var arr = roleMenu.Select(p => p.MenuId).ToArray();
+                    var menus= SysMenus.Where(p=>arr.Contains(p.MenuId)).ToList();
 
+                    List<SysMenuVM> menusList = new List<SysMenuVM>();
+                    //获取当前角色的json菜单数据
+                   // IEnumerable<Sys> RolesMenus = GetRoleMenu(roles, adminRoleId);
+                    //首先找出父级菜单
+                    var ParentMenus = menus.Where(p => p.ParentMenuId == 0);
+                    foreach (SysMenu item in ParentMenus)
+                    {
+                        SysMenuVM roleMenuParent = SysMenuVM.ToViewModel(item);
+                        //添加子菜单
+                        foreach (SysMenu childMenu in menus)
+                        {
+                            SysMenuVM childViewMenu = SysMenuVM.ToViewModel(childMenu);
+                            if (childViewMenu.ParentID == roleMenuParent.ID)
+                            {
+                                if (roleMenuParent.Children == null)
+                                    roleMenuParent.Children = new List<SysMenuVM>();
+                                roleMenuParent.Children.Add(childViewMenu);
+                            }
+                        }
+                        menusList.Add(roleMenuParent);
+                    }
+                    return menusList;
+                }
+            }
+
+            return null;
+
+        }
     }
 }
 

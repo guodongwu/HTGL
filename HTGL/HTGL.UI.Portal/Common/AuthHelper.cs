@@ -80,7 +80,7 @@ namespace HTGL.UI.Portal.Common
             public string Nick { get; set; }
             public string UserName { get; set; }
             public string Roles { get; set; }
-            public string CurrentRole { get; set; }
+            public int CurrentRole { get; set; }
         }
 
     }

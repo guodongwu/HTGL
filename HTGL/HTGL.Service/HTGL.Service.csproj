@@ -41,12 +41,16 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="Implement\SysDictService.cs" />
+    <Compile Include="Implement\SysMenuService.cs" />
+    <Compile Include="Implement\SysRoleMenuService.cs" />
     <Compile Include="Implement\SysRoleService.cs" />
     <Compile Include="Implement\SysUserRoleService.cs" />
     <Compile Include="Implement\SysUserService.cs" />
     <Compile Include="Implement\SysDbBackupService.cs" />
     <Compile Include="Interface\ISysDictService.cs" />
     <Compile Include="Interface\ISysDbBackupService.cs" />
+    <Compile Include="Interface\ISysMenuService.cs" />
+    <Compile Include="Interface\ISysRoleMenuService.cs" />
     <Compile Include="Interface\ISysUserService.cs" />
     <Compile Include="Interface\ISysRoleService.cs" />
     <Compile Include="Interface\ISysUserRoleService.cs" />
