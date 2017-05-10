@@ -22,10 +22,6 @@ namespace HTGL.UI.Portal
             var baseType = typeof(IDependency);
             var assemblys = BuildManager.GetReferencedAssemblies().Cast<Assembly>().ToList();
             builder.RegisterControllers(Assembly.GetExecutingAssembly()); 
-            var AllServices = assemblys
-               .SelectMany(s => s.GetTypes())
-                   .Where(p => baseType.IsAssignableFrom(p) && p != baseType).ToList();
-           
             builder.RegisterAssemblyTypes(assemblys.ToArray())
                    .Where(t => baseType.IsAssignableFrom(t) && t != baseType)
                    .AsImplementedInterfaces().InstancePerHttpRequest().PropertiesAutowired();

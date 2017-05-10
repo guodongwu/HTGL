@@ -84,7 +84,12 @@ namespace HTGL.Model{
         /// </summary>      
         public string OperatingDesc {get;set;}
 
-        public SysUser SysUser { get; set; }
+        public  string ProcessName { get; set; }
+
+        public  string ProcessDesc { get; set; }
+
+        public  string MethodName { get; set; }
+        public virtual SysUser SysUser { get; set; }
         
     }
     

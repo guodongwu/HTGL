@@ -33,8 +33,8 @@ namespace HTGL.Repository.EF
             : base("name=DefaultDbContext")
         {
             //实体模型改变时，自动迁移到最新版本
-           // Database.SetInitializer(new MigrateDatabaseToLatestVersion<DefaultDbContext, Migrations.Configuration>());
-       
+            // Database.SetInitializer(new MigrateDatabaseToLatestVersion<DefaultDbContext, Migrations.Configuration>());
+
         }
 
         public DefaultDbContext(string nameOrConnectionString)

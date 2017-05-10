@@ -85,34 +85,6 @@ namespace HTGL.UI.Portal.Common
 
     }
 
-    public class UserAuthorize : AuthorizeAttribute
-    {
-        public UserAuthorize()
-        {
-
-        }
-
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
-        {
-            return AuthHelper.GetUserId() > 0;
-        }
-
-        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
-        {
-            base.HandleUnauthorizedRequest(filterContext);
-            AuthHelper.LoginOut();
-            if (filterContext.HttpContext.Request.IsAjaxRequest())
-            {
-                filterContext.Result = new JsonResult { Data = new { Error = -1, Message = "" } };
-            }
-            else
-            {
-                filterContext.Result = new RedirectResult("/CMS/Manage/Login?returnUrl=" + HttpUtility.UrlEncode(filterContext.HttpContext.Request.RawUrl));
-            }
-        }
-    }
-
-
 
 
 }

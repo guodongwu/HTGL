@@ -15,7 +15,7 @@
                     offset += search.length;
                     end = document.cookie.indexOf(";", offset);
                     if (end == -1) end = document.cookie.length;
-                    cookieValue = decodeURIComponent(document.cookie.substring(offset, end))
+                    cookieValue = decodeURIComponent(document.cookie.substring(offset, end));
                 }
             }
             return cookieValue;
@@ -51,7 +51,7 @@
             iTools.wintip = $.ligerDialog.tip({ content: message });
         }
         setTimeout(function () {
-            iTools.wintip.hide()
+            iTools.wintip.hide();
         }, 4000);
     };
 
@@ -344,9 +344,9 @@
                     var o = data[i];
                     items[items.length] = {
                         click: toolbarBtnItemClick,
-                        text: o.PermissionName,
+                        text: o.Name,
                         img: o.Icon,
-                        id: o.PermissionAction
+                        id: o.ActionName
                     };
                     items[items.length] = { line: true };
                 }

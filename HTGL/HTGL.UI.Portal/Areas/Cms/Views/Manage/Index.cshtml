@@ -1,29 +1,24 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>后台权限管理系统</title>
-</head>
-<body style="text-align: center; background: #F0F0F0; overflow: hidden;">
-    <div id="pageloading" style="display: block;"></div>
-    <div id="topmenu" class="l-topmenu">
-        <div class="l-topmenu-logo">管理系统</div>
-        <div class="l-topmenu-welcome">
-            <span class="l-topmenu-username"></span>欢迎您  &nbsp; 
+﻿<div id="pageloading" style="display: block;"></div>
+<div id="topmenu" class="l-topmenu">
+    <div class="l-topmenu-logo">管理系统</div>
+    <div class="l-topmenu-welcome">
+        <span class="l-topmenu-username"></span>欢迎您  &nbsp; 
             [<a href="javascript:f_changepassword()">修改密码</a>] &nbsp; 
-
              [<a href="javascript:f_login()">切换用户</a>]
             [<a href="javascript:f_logout()">退出</a>] 
-        </div>
+    </div>
 
-    </div>
-    <div id="mainbody" class="l-mainbody" style="width: 99.2%; margin: 0 auto; margin-top: 3px;">
-        <div position="left" title="主要菜单" id="mainmenu"></div>
-        <div position="center" id="framecenter">
-            <div tabid="home" title="我的主页">
-                @Html.Partial("Welcome")
-            </div>
+</div>
+<div id="mainbody" class="l-mainbody" style="width: 100%; margin: 0 auto; margin-top: 3px;">
+    <div position="left" title="主要菜单" id="mainmenu"></div>
+    <div position="center" id="framecenter">
+        <div tabid="home" title="我的主页">
+            @Html.Partial("Welcome")
         </div>
     </div>
+</div>
+<form id="pwd"></form>
+@section scripts{
     <script type="text/javascript">
         //几个布局的对象
         var layout, tab, accordion;
@@ -36,6 +31,7 @@
             if (accordion && options.middleHeight - 24 > 0)
                 accordion.setHeight(options.middleHeight - 24);
         }
+
         //增加tab项的函数
         function f_addTab(tabid, text, url) {
             if (!tab) return;
@@ -45,42 +41,69 @@
             }
             tab.addTabItem({ tabid: tabid, text: text, url: url });
         }
-
         //登录
         function f_login() {
             location.href = "/Cms/Manage/Login";
         }
+
         //退出
         function f_logout() {
-            $.ligerDialog.confirm('您确定要退出么？', function (yes) {
-                $.ajax({
-                    url: '/Cms/Manage/Logout',
-                    dataType: 'text',
-                    type: 'post',
-                    success: function () {
-                        location.href = "/Cms/Manage/Login";
-                    },
-                    error: function (message) {
-                        iTools.showError(message);
+            $.ligerDialog.confirm('您确定要退出么？',
+                function (yes) {
+
+                    if (yes) {
+                        $.ajax({
+                            url: '/Cms/Manage/Logout',
+                            dataType: 'text',
+                            type: 'post',
+                            success: function () {
+                                location.href = "/Cms/Manage/Login";
+                            },
+                            error: function (message) {
+                                iTools.showError(message);
+                            }
+                        });
                     }
                 });
-            });
         }
+
         //修改密码
         function f_changepassword() {
-            $(document).bind('keydown.changepassword', function (e) {
-                if (e.keyCode == 13) {
-                    doChangePassword();
-                }
-            });
+            $(document).bind('keydown.changepassword',
+                    function (e) {
+                        if (e.keyCode == 13) {
+                            doChangePassword();
+                        }
+                    });
 
             if (!window.changePasswordWin) {
-                var changePasswordPanle = $("<form></form>");
+                var changePasswordPanle = $("#pwd");
                 changePasswordPanle.ligerForm({
+                    validate: false,
                     fields: [
-                        { display: '旧密码', name: 'OldPassword', type: 'password', validate: { maxlength: 50, required: true, messages: { required: '请输入密码' } } },
-                        { display: '新密码', name: 'NewPassword', type: 'password', validate: { maxlength: 50, required: true, messages: { required: '请输入密码' } } },
-                        { display: '确认密码', name: 'NewPassword2', type: 'password', validate: { maxlength: 50, required: true, equalTo: '#NewPassword', messages: { required: '请输入密码', equalTo: '两次密码输入不一致' } } }
+                        {
+                            display: '旧密码',
+                            name: 'OldPassword',
+                            type: 'password',
+                            validate: { maxlength: 20, required: true, messages: { required: '请输入密码' } }
+                        },
+                        {
+                            display: '新密码',
+                            name: 'NewPassword',
+                            type: 'password',
+                            validate: { maxlength: 20, required: true, messages: { required: '请输入密码' } }
+                        },
+                        {
+                            display: '确认密码',
+                            name: 'NewPassword2',
+                            type: 'password',
+                            validate: {
+                                maxlength: 20,
+                                required: true,
+                                equalTo: '#NewPassword',
+                                messages: { required: '请输入密码', equalTo: '两次密码输入不一致' }
+                            }
+                        }
                     ]
                 });
 
@@ -90,26 +113,28 @@
 
                 window.changePasswordWin = $.ligerDialog.open({
                     width: 400,
-                    height: 190, top: 200,
+                    height: 190,
+                    top: 200,
                     isResize: true,
                     title: '用户修改密码',
                     target: changePasswordPanle,
                     buttons: [
-                    {
-                        text: '确定', onclick: function () {
-                            doChangePassword();
+                        {
+                            text: '确定',
+                            onclick: function () {
+                                doChangePassword();
+                            }
+                        },
+                        {
+                            text: '取消',
+                            onclick: function () {
+                                window.changePasswordWin.hide();
+                                $(document).unbind('keydown.changepassword');
+                            }
                         }
-                    },
-                    {
-                        text: '取消', onclick: function () {
-                            window.changePasswordWin.hide();
-                            $(document).unbind('keydown.changepassword');
-                        }
-                    }
                     ]
                 });
-            }
-            else {
+            } else {
                 window.changePasswordWin.show();
             }
 
@@ -136,9 +161,68 @@
             }
 
         }
+
         $(document).ready(function () {
+            var mainmenu = $("#mainmenu");
+            $.getJSON('@Url.Content("~/Cms/Manage/GetMenus?rnd=")' + Math.random(),
+                      function (menus) {
+                          $(menus).each(function (i, menu) {
+                              var item = $('<div title="' + menu.Text + '"><ul class="menulist"></ul></div>');
+
+                              $(menu.Children)
+                                  .each(function (j, submenu) {
+                                      var subitem =
+                                          $('<li><img/><span></span><div class="menuitem-l"></div><div class="menuitem-r"></div></li>');
+                                      subitem.attr({
+                                          url: submenu.LinkUrl,
+                                          menuno: submenu.MenuController
+                                      });
+                                      $("img", subitem).attr("src", submenu.Icon);
+                                      $("span", subitem).html(submenu.Text);
+
+                                      $("ul:first", item).append(subitem);
+                                  });
+                              mainmenu.append(item);
+
+                          });
+
+                          //Accordion
+                          accordion = $("#mainmenu").ligerAccordion({ height: bodyHeight - 24, speed: null });
+
+                          $("#pageloading").hide();
+                      });
+
+            $.ajax({
+                url: '@Url.Content("~/Cms/Manage/GetCurrentUser")',
+                  success: function (user) {
+                      // $(".l-topmenu-username").html(user.Title + "，");
+                      $("#labelusername").html(user.Title + ",");
+                      var now = new Date(), hour = now.getHours();
+                      if (hour > 4 && hour < 6) {
+                          $("#labelwelcome").html("凌晨好！")
+                      } else if (hour < 9) {
+                          $("#labelwelcome").html("早上好！")
+                      } else if (hour < 12) {
+                          $("#labelwelcome").html("上午好！")
+                      } else if (hour < 14) {
+                          $("#labelwelcome").html("中午好！")
+                      } else if (hour < 17) {
+                          $("#labelwelcome").html("下午好！")
+                      } else if (hour < 19) {
+                          $("#labelwelcome").html("傍晚好！")
+                      } else if (hour < 22) {
+                          $("#labelwelcome").html("晚上好！")
+                      } else {
+                          $("#labelwelcome").html("夜深了，注意休息！")
+                      }
+
+                  },
+                  error: function () {
+                      $.ligerDialog.alert('用户信息加载失败', 'error');
+                  }
+              });
             //菜单初始化
-            $("ul.menulist li").live('click', function () {
+            $(document).on('click', "ul.menulist li", function () {
                 var jitem = $(this);
                 var tabid = jitem.attr("tabid");
                 var url = jitem.attr("url");
@@ -155,17 +239,28 @@
                     jitem.attr("url", url);
                 }
                 f_addTab(tabid, $("span:first", jitem).html(), url);
-            }).live('mouseover', function () {
-                var jitem = $(this);
-                jitem.addClass("over");
-            }).live('mouseout', function () {
-                var jitem = $(this);
-                jitem.removeClass("over");
-            });
+            })
+                .on('mouseover', "ul.menulist li",
+                    function () {
+                        var jitem = $(this);
+                        jitem.addClass("over");
+                    })
+                .on('mouseout', "ul.menulist li",
+                    function () {
+                        var jitem = $(this);
+                        jitem.removeClass("over");
+                    });
 
             //布局初始化 
             //layout
-            layout = $("#mainbody").ligerLayout({ height: '100%', heightDiff: -3, leftWidth: 140, onHeightChanged: f_heightChanged, minLeftWidth: 120 });
+            layout = $("#mainbody")
+                .ligerLayout({
+                    width:'100%',
+                    heightDiff: -3,
+                    leftWidth: 140,
+                    onHeightChanged: f_heightChanged,
+                    minLeftWidth: 120
+                });
             var bodyHeight = $(".l-layout-center:first").height();
             //Tab
             tab = $("#framecenter").ligerTab({ height: bodyHeight, contextmenu: true });
@@ -174,56 +269,7 @@
             //预加载dialog的背景图片
             //LG.prevDkialogImage();
 
-            var mainmenu = $("#mainmenu");
-
-            $.getJSON('@Url.Content("~/Cms/Manage/GetMenus?rnd=")' + Math.random(), function (menus) {
-
-                $(menus).each(function (i, menu) {
-                    var item = $('<div title="' + menu.Text + '"><ul class="menulist"></ul></div>');
-
-                    $(menu.Children).each(function (j, submenu) {
-                        var subitem = $('<li><img/><span></span><div class="menuitem-l"></div><div class="menuitem-r"></div></li>');
-                        subitem.attr({
-                            url: submenu.LinkUrl,
-                            menuno: submenu.MenuController
-                        });
-                        $("img", subitem).attr("src", submenu.Icon);
-                        $("span", subitem).html(submenu.Text);
-
-                        $("ul:first", item).append(subitem);
-                    });
-                    mainmenu.append(item);
-
-                });
-
-                //Accordion
-                accordion = $("#mainmenu").ligerAccordion({ height: bodyHeight - 24, speed: null });
-
-                $("#pageloading").hide();
-            });
-
-            $.ajax({
-                url: '@Url.Content("~/Cms/Manage/GetCurrentUser")',
-                success: function (user) {
-                    // $(".l-topmenu-username").html(user.Title + "，");
-                    $("#labelusername").html(user.Title + ",");
-                    var now = new Date(), hour = now.getHours();
-                    if (hour > 4 && hour < 6) { $("#labelwelcome").html("凌晨好！") }
-                    else if (hour < 9) { $("#labelwelcome").html("早上好！") }
-                    else if (hour < 12) { $("#labelwelcome").html("上午好！") }
-                    else if (hour < 14) { $("#labelwelcome").html("中午好！") }
-                    else if (hour < 17) { $("#labelwelcome").html("下午好！") }
-                    else if (hour < 19) { $("#labelwelcome").html("傍晚好！") }
-                    else if (hour < 22) { $("#labelwelcome").html("晚上好！") }
-                    else { $("#labelwelcome").html("夜深了，注意休息！") }
-
-                },
-                error: function () {
-                    $.ligerDialog.alert('用户信息加载失败', 'error');
-                }
-            });
         });
     </script>
-</body>
-</html>
+}
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HTGL.Component.Tools;
+using Newtonsoft.Json;
 
 namespace HTGL.Model
 {
@@ -31,15 +32,24 @@ namespace HTGL.Model
         /// </summary>      
         public string Name { get; set; }
 
+        public  string ControllerName { get; set; }
+        public  string ActionName { get; set; }
         /// <summary>  
         ///   
         /// </summary>      
         public string Description { get; set; }
+        public  string Icon { get; set; }
+
+        public  bool IsVisible { get; set; }
+
+        public  bool IsButton { get; set; }
 
         /// <summary>  
         ///   
         /// </summary>      
         public int? AddUserId { get; set; }
+
+        public int? ParentFID { get; set; }
 
         /// <summary>  
         ///   
@@ -59,8 +69,9 @@ namespace HTGL.Model
         /// <summary>  
         ///   
         /// </summary>      
-        public byte? Order { get; set; }
+        public byte? Sort { get; set; }
 
+ 
 
     }
 

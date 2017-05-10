@@ -18,14 +18,17 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
 
         private readonly ISysUserService _sysUserService;
         private readonly ISysUserRoleService _sysUserRoleService;
+        private readonly ISysFunctionService _sysFunctionService;
         public ManageController(
             ISysUserService sysUserService
-            , ISysUserRoleService sysUserRoleService
+            , ISysUserRoleService sysUserRoleService,
+            ISysFunctionService sysFunctionService
             )
         {
 
             _sysUserService = sysUserService;
             _sysUserRoleService = sysUserRoleService;
+            _sysFunctionService = sysFunctionService;
             // 获取当前信息
         }
 
@@ -38,7 +41,7 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
         public ActionResult Logout()
         {
             AuthHelper.LoginOut();
-
+            WriteOperateLog("登出", "[用户登录] 退出成功", EnumActionOperatonType.LOGIN);
             return Content(EnumActionExecutedStatus.Success.ToString());
         }
         public ActionResult Index()
@@ -63,7 +66,7 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
                 if (request.CurrentRole == 0) //没有传权限
                 {
                     if (!string.IsNullOrEmpty(userRoles) && !userRoles.Contains(',')) //不包含，意味着只有一个
-                        userinfo.CurrentRole =int.Parse(userRoles);
+                        userinfo.CurrentRole = int.Parse(userRoles);
                 }
                 else
                 {
@@ -71,11 +74,12 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
                 }
                 userinfo.Roles = userRoles;
                 AuthHelper.Authenticate(userinfo);
-
+                WriteOperateLog("登录", "[用户登录] 登陆成功", EnumActionOperatonType.LOGIN);
                 return Content(EnumActionExecutedStatus.Success.ToString());
             }
             else
             {
+                WriteOperateLog("登录", "[用户登录] 登录失败", EnumActionOperatonType.LOGIN);
                 return Content(EnumActionExecutedStatus.Error.ToString());
             }
         }
@@ -117,12 +121,11 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
         [Description("所有列表页面的按钮加载")]
         public ActionResult GetMenuButton()
         {
-            //var user = GetUserInfo();
-            //return Json(
-            //    userService.GetButtons(user.UserRoles, ConfigSettings.GetAdminUserRoleID(),
-            //    MenuNo), JsonRequestBehavior.AllowGet
-            //    );
-            return View();
+            var userinfo = GetUserInfo();
+
+            int currentRole = userinfo.CurrentRole;
+            string MenuNo = HttpContext.Request["MenuNo"];
+            return Json(_sysFunctionService.GetButtons(MenuNo), JsonRequestBehavior.AllowGet);
 
         }
         [Description("获取所有的按钮图标")]

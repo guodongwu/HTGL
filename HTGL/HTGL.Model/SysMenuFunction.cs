@@ -48,8 +48,8 @@ namespace HTGL.Model{
         ///   
         /// </summary>      
         public int? AddUserId {get;set;}
-        public SysFunction SysFunction { get; set; }
-        public SysMenu SysMenu { get; set; }
+        public virtual SysFunction SysFunction { get; set; }
+        public virtual SysMenu SysMenu { get; set; }
         
     }
     

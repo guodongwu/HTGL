@@ -73,7 +73,7 @@ namespace HTGL.Model
         /// <summary>
         /// 是否为 
         /// </summary>
-        public bool IsLeaf { get; set; }
+        public bool? IsLeaf { get; set; }
     }
 
 }

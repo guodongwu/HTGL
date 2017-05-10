@@ -80,6 +80,8 @@
     <Compile Include="SysUserRole.cs" />
     <Compile Include="ViewModel\SysMenuVM.cs" />
     <Compile Include="ViewModel\SysUserVM.cs" />
+    <Compile Include="ViewModel\UIGrid.cs" />
+    <Compile Include="ViewModel\UIGridRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
