@@ -1,23 +1,25 @@
-﻿<div id="pageloading" style="display: block;"></div>
-<div id="topmenu" class="l-topmenu">
-    <div class="l-topmenu-logo">管理系统</div>
-    <div class="l-topmenu-welcome">
-        <span class="l-topmenu-username"></span>欢迎您  &nbsp; 
+﻿<body  style="text-align: center; background: #F0F0F0; overflow: hidden;">
+    <div id="pageloading" style="display: block;"></div>
+    <div id="topmenu" class="l-topmenu">
+        <div class="l-topmenu-logo">管理系统</div>
+        <div class="l-topmenu-welcome">
+            <span class="l-topmenu-username"></span>欢迎您  &nbsp; 
             [<a href="javascript:f_changepassword()">修改密码</a>] &nbsp; 
              [<a href="javascript:f_login()">切换用户</a>]
             [<a href="javascript:f_logout()">退出</a>] 
-    </div>
+        </div>
 
-</div>
-<div id="mainbody" class="l-mainbody" style="width: 100%; margin: 0 auto; margin-top: 3px;">
-    <div position="left" title="主要菜单" id="mainmenu"></div>
-    <div position="center" id="framecenter">
-        <div tabid="home" title="我的主页">
-            @Html.Partial("Welcome")
+    </div>
+    <div id="mainbody" class="l-mainbody" style="width: 100%; margin: 0 auto; margin-top: 3px;">
+        <div position="left" title="主要菜单" id="mainmenu"></div>
+        <div position="center" id="framecenter">
+            <div tabid="home" title="我的主页">
+                @Html.Partial("Welcome")
+            </div>
         </div>
     </div>
-</div>
-<form id="pwd"></form>
+    <form id="pwd"></form>
+</body>
 @section scripts{
     <script type="text/javascript">
         //几个布局的对象
@@ -169,7 +171,7 @@
                           $(menus).each(function (i, menu) {
                               var item = $('<div title="' + menu.Text + '"><ul class="menulist"></ul></div>');
 
-                              $(menu.Children)
+                              $(menu.children)
                                   .each(function (j, submenu) {
                                       var subitem =
                                           $('<li><img/><span></span><div class="menuitem-l"></div><div class="menuitem-r"></div></li>');
@@ -194,33 +196,33 @@
 
             $.ajax({
                 url: '@Url.Content("~/Cms/Manage/GetCurrentUser")',
-                  success: function (user) {
-                      // $(".l-topmenu-username").html(user.Title + "，");
-                      $("#labelusername").html(user.Title + ",");
-                      var now = new Date(), hour = now.getHours();
-                      if (hour > 4 && hour < 6) {
-                          $("#labelwelcome").html("凌晨好！")
-                      } else if (hour < 9) {
-                          $("#labelwelcome").html("早上好！")
-                      } else if (hour < 12) {
-                          $("#labelwelcome").html("上午好！")
-                      } else if (hour < 14) {
-                          $("#labelwelcome").html("中午好！")
-                      } else if (hour < 17) {
-                          $("#labelwelcome").html("下午好！")
-                      } else if (hour < 19) {
-                          $("#labelwelcome").html("傍晚好！")
-                      } else if (hour < 22) {
-                          $("#labelwelcome").html("晚上好！")
-                      } else {
-                          $("#labelwelcome").html("夜深了，注意休息！")
-                      }
+                success: function (user) {
+                    $(".l-topmenu-username").html(user.Title + "，");
+                    $("#labelusername").html(user.Title + ",");
+                    var now = new Date(), hour = now.getHours();
+                    if (hour > 4 && hour < 6) {
+                        $("#labelwelcome").html("凌晨好！")
+                    } else if (hour < 9) {
+                        $("#labelwelcome").html("早上好！")
+                    } else if (hour < 12) {
+                        $("#labelwelcome").html("上午好！")
+                    } else if (hour < 14) {
+                        $("#labelwelcome").html("中午好！")
+                    } else if (hour < 17) {
+                        $("#labelwelcome").html("下午好！")
+                    } else if (hour < 19) {
+                        $("#labelwelcome").html("傍晚好！")
+                    } else if (hour < 22) {
+                        $("#labelwelcome").html("晚上好！")
+                    } else {
+                        $("#labelwelcome").html("夜深了，注意休息！")
+                    }
 
-                  },
-                  error: function () {
-                      $.ligerDialog.alert('用户信息加载失败', 'error');
-                  }
-              });
+                },
+                error: function () {
+                    $.ligerDialog.alert('用户信息加载失败', 'error');
+                }
+            });
             //菜单初始化
             $(document).on('click', "ul.menulist li", function () {
                 var jitem = $(this);
@@ -255,7 +257,7 @@
             //layout
             layout = $("#mainbody")
                 .ligerLayout({
-                    width:'100%',
+                    width: '100%',
                     heightDiff: -3,
                     leftWidth: 140,
                     onHeightChanged: f_heightChanged,

@@ -8550,7 +8550,7 @@
         */
         beginEdit: function (rowParm, containerBulider) {
             var g = this, p = this.options;
-            if (!p.enabledEdit) return;
+            if (!p.enabledEdit || p.clickToEdit) return;
             var rowdata = g.getRow(rowParm);
             if (rowdata._editing) return;
             if (g.trigger('beginEdit', { record: rowdata, rowindex: rowdata['__index'] }) == false) return;
@@ -17519,7 +17519,7 @@
         enabledCompleteCheckbox: true,     //是否启用半选择
         parentIcon: 'folder',
         childIcon: 'leaf',
-        textFieldName: 'text',
+        textFieldName: 'Text',
         attribute: ['id', 'url'],
         treeLine: true,            //是否显示line
         nodeWidth: 90,
@@ -17540,14 +17540,14 @@
         onSuccess: function () { },
         onError: function () { },
         onClick: function () { },
-        idFieldName: 'id',
+        idFieldName: 'ID',
         parentIDFieldName: null,
         topParentIDValue: 0,
         onBeforeAppend: function () { },        //加载数据前事件，可以通过return false取消操作
         onAppend: function () { },             //加载数据时事件，对数据进行预处理以后
         onAfterAppend: function () { },         //加载数据完事件
         slide: true,          //是否以动画的形式显示
-        iconFieldName: 'icon',
+        iconFieldName: 'Icon',
         nodeDraggable: false,             //是否允许拖拽
         nodeDraggingRender: null,
         btnClickToToggleOnly: true,     //是否点击展开/收缩 按钮时才有效

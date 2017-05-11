@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-<body style="padding: 0; height: 100%; width: 100%; text-align: center;">
+<body style="padding: 10px; text-align: center; margin: 0 auto;">
     <input type="hidden" id="MenuNo" value="OperateLog" />
     <div id="maingrid"></div>
     <div id="receiptInfo" style="background-color: white; display: none; border: 1px solid #AECAF0; z-index: 9999">
@@ -20,12 +20,22 @@
             buttons: [
                  {
                      text: '查询', width: 60, click: function () {
-                         var userName = $("input[ligeruiid=UserName]").val();
-                         var ipaddress = $("input[ligeruiid=IPAddress]").val();
-                         var startdt = $("input[ligeruiid=CreateDate]").val();
-                         var enddt = $("input[ligeruiid=EndDate]").val();
-                         grid.loadServerData({ UserName: userName, IPAddress: ipaddress, StartDateTime: startdt, EndDateTime: enddt });
+                         if (grid) {
+                             var userName = $("input[ligeruiid=UserName]").val();
+                             var ipaddress = $("input[ligeruiid=IPAddress]").val();
+                             var startdt = $("input[ligeruiid=CreateDate]").val();
+                             var enddt = $("input[ligeruiid=EndDate]").val();
+                             var gridparms = [];
+                             gridparms.push({ name: "UserName", value: userName });
+                             gridparms.push({ name: "IPAddress", value: ipaddress });
+                             gridparms.push({ name: "StartDateTime", value: startdt });
+                             gridparms.push({ name: "EndDateTime", value: enddt });
+                             gridparms.push({ name: "page", value: 1 });
+                             gridparms.push({ name: "pagesize", value: grid.options.pageSize });
+                             grid.loadServerData(gridparms);
+                         }
                      }
+
                  }
             ]
         });

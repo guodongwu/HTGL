@@ -48,7 +48,9 @@ namespace HTGL.Model{
         ///   
         /// </summary>      
         public byte? Order {get;set;}
-        
+
+
+        public string Desc { get; set; }
     }
     
 }

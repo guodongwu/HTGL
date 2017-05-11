@@ -937,9 +937,8 @@
                 }
             };
             if (p.contentType) ajaxOptions.contentType = p.contentType;
-            if (p.contentType == "application/json" && typeof (parms) != "string")
-            {
-                ajaxOptions.data = converParmJson(param)
+            if (p.contentType == "application/json" && typeof (parms) != "string") {
+                ajaxOptions.data = converParmJson(param);
             }
             $.ajax(ajaxOptions);
 

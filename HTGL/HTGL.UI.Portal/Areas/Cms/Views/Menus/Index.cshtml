@@ -1,0 +1,278 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div id="menulayout">
+    <div position="left" title="主菜单">
+        <ul id="menuTree"></ul>
+    </div>
+    <div position="center" title="子菜单列表">
+        <form id="mainform">
+            <div id="maingrid" style="margin: 2px;">
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script type="text/javascript">
+        var maingform = $("#mainform");
+        $.metadata.setType("attr", "validate");
+        iTools.validate(maingform, { debug: false });
+        //覆盖本页面grid的loading效果
+        iTools.overrideGridLoading();
+        var layout = $("#menulayout").ligerLayout({ leftWidth: 150 });
+        var currentMenuParentNo;
+        var tree = $("#menuTree").ligerTree({
+            url: '/Menus/GetParentMenuTree?' +
+                $.param({
+                    root: '主菜单',
+                    rooticon: '@Url.Content("~/Content/icons/32X32/category.gif")',
+                    view: 'Sys_Menu',
+                    idfield: '0',
+                    pidfield: '0',
+                    textfield: 'Name',
+                    iconfield: 'Icon'
+                }),
+            checkbox: false,
+            onClick: function (node) {
+
+                currentMenuParentNo = node.data.ID;
+                grid.set('parms', { ParentNo: currentMenuParentNo, sortname: "ID" });
+                grid.set('url', '/Menus/GetMenusGrid');
+            }
+        });
+
+
+            function toolbarBtnItemClick(item) {
+                var editingrow = grid.getEditingRow();
+                switch (item.id) {
+                    case "Add":
+                        if (editingrow == null) {
+                            grid.addEditRow();
+                        } else {
+                            iTools.tip('请先提交或取消修改');
+                        }
+                        break;
+                    case "Update":
+                        if (editingrow == null) {
+                            var row = grid.getSelectedRow();
+                            if (!row) { iTools.tip('请选择行'); return; }
+                            grid.beginEdit(row);
+                        } else {
+                            iTools.tip('请先提交或取消修改');
+                        }
+                        break;
+                    case "Save":
+                        if (editingrow != null) {
+                            grid.endEdit(editingrow);
+                        } else {
+                            iTools.tip('现在不在编辑状态!');
+                        }
+                        break;
+                    case "Cancel":
+                        if (editingrow != null) {
+                            if (!editingrow.MenuId) {
+                                console.info(editingrow);
+                                grid.deleteRow(editingrow);
+                                return;
+                            }
+                            grid.cancelEdit(editingrow);
+                        } else {
+                            iTools.tip('现在不在编辑状态!');
+                        }
+                        break;
+                    case "Delete":
+                        $.ligerDialog.confirm('确定删除吗(该删除操作只是软删除)?', function (confirm) {
+                            if (confirm) {
+                                var selected = grid.getSelected();
+                                if (selected) {
+                                    if (!selected.MenuId) {
+                                        console.info(selected.MenuId);
+                                        grid.deleteRow(selected);
+                                        return;
+                                    }
+                                    var data = $.extend({ MenuParentNo: currentMenuParentNo }, selected);
+                                    data.MenuId = selected.MenuId;
+                                    $.ajax({
+                                        url: '/Menus/Delete',
+                                        loading: '正在删除中...',
+                                        data: data,
+                                        type: "post",
+                                        success: function () {
+                                            iTools.tip('删除成功!');
+                                            grid.loadData();
+                                            treefresh();
+                                        },
+                                        error: function (message) {
+                                            iTools.showError(message);
+                                        }
+                                    });
+                                }
+                                else {
+                                    iTools.tip('请选择行!');
+                                }
+                            }
+                        });
+                        break;
+                    case "RealDelete":
+                        $.ligerDialog.confirm('确定删除吗(该删除操作将会永久删除,一旦删除将无法挽回)?', function (confirm) {
+                            if (confirm) {
+                                var selected = grid.getSelected();
+                                if (selected) {
+                                    if (!selected.MenuId) {
+                                        grid.deleteRow(selected);
+                                        return;
+                                    }
+                                    var data = $.extend({ MenuParentNo: currentMenuParentNo }, selected);
+                                    data.MenuId = selected.MenuId;
+                                    $.ajax({
+                                        url: '/Menus/RealDelete',
+                                        loading: '正在删除中...',
+                                        data: data,
+                                        success: function () {
+                                            iTools.tip('删除成功!');
+                                            grid.loadData();
+                                            treefresh();
+                                        },
+                                        error: function (message) {
+                                            iTools.showError(message);
+                                        }
+                                    });
+                                }
+                                else {
+                                    iTools.tip('请选择行!');
+                                }
+                            }
+                        });
+                        break;
+                    case "MenuButtonConfig":
+
+                        if (editingrow == null) {
+                            var selected = grid.getSelected();
+                            if (selected) {
+                                if (!selected.MenuId)
+                                    return;
+                                else {
+                                    var params = 'controllerName=' + selected.MenuController + '&MenuNo=MenusButtonsManage&MenuID=' + selected.MenuId;
+                                    top.f_addTab(null, '[' + selected.Name + ']菜单按钮管理', '/MenusButtonsManage/Index?' + params);
+                                }
+                            }
+                            else
+                                iTools.tip('请选择行!');
+                        } else {
+                            iTools.tip('请先提交或取消修改!');
+                        }
+                        break;
+                }
+            }
+
+            function treefresh() {
+                tree.clear();
+                tree.loadData(null, '/Menus/GetParentMenuTree?' + $.param({ root: '主菜单', rooticon: '@Url.Content("~/Content/icons/32X32/category.gif")', view: 'Sys_Menu', idfield: '0', pidfield: '0', textfield: 'Name', iconfield: 'Icon' }), null);
+            }
+
+            var grid = $("#maingrid").ligerGrid({
+                columns: [
+                      { display: '菜单名', name: 'Name', align: 'left', width: 150, minWidth: 60, isSort: false, validate: { required: true }, editor: { type: 'text' } },
+                      { display: '模块ID', name: 'MenuId', align: 'left', width: 100, minWidth: 60, hide: true },
+                      { display: '菜单编号', name: 'MenuId', align: 'left', width: 100, minWidth: 60 },
+                      { display: '上级编号ID', name: 'ParentMenuId', align: 'left', width: 100, minWidth: 60, hide: true },
+                      { display: '上级编号', name: 'ParentMenuId', align: 'left', width: 100, minWidth: 60 },
+                      { display: '控制器', name: 'MenuController', align: 'left', width: 130, isSort: false, minWidth: 60, editor: { type: 'text' } },
+                    {
+                        display: '是否显示', name: 'IsVisible', align: 'left', isSort: false, width: 60, minWidth: 60, editor: { type: 'checkbox' },
+                        render: function (item) {
+                            if (item.IsVisible)
+                                return "显示";
+                            else
+                                return "隐藏";
+                        }
+                    },
+                    {
+                        display: '是否为菜单', name: 'IsMenu', align: 'left', isSort: false, width: 80, minWidth: 60, editor: { type: 'checkbox' },
+                        render: function (item) {
+                            if (item.IsMenu)
+                                return "菜单";
+                            else
+                                return "模块";
+                        }
+                    },
+                    {
+                        display: '图标', name: 'Icon', align: 'left', isSort: false, width: 100, minWidth: 50, editor: {
+                            type: 'select',
+                            ext: function (rowdata) {
+                                return {
+                                    onBeforeOpen: function () {
+                                        currentComboBox = this;
+                                        f_openIconsWin();
+                                        return false;
+                                    },
+                                    render: function () {
+                                        return rowdata.Icon;
+                                    }
+                                };
+                            }
+                        }
+                            , render: function (item) {
+                                return "<div style='width:100%;height:100%;'><img src='" + item.Icon + "' /></div>";
+                            }
+                    },
+                    {
+                        display: '菜单链接地址', name: 'Url', isSort: false, align: 'left', width: 300, minWidth: 60, editor: { type: 'text' }
+                    }
+                ], dataAction: 'server', pageSize: 10, toolbar: {}, sortname: 'MenuId',
+                width: '96%', height: '100%', heightDiff: -5, checkbox: false, usePager: true, enabledEdit: true, clickToEdit: false,
+                fixedCellHeight: true, rowHeight: 25
+            });
+            //本地按钮
+            var toolbarOptions = [
+                   { text: '保存', id: 'Save', click: toolbarBtnItemClick, img: "@Url.Content("~/Content/icons/silkicons/page_save.png")" },
+                  { text: '取消', id: 'Cancel', click: toolbarBtnItemClick, img: "@Url.Content("~/Content/icons/silkicons/cancel.png")" }
+            ];
+            //加载toolbar
+            iTools.loadToolbar(grid, toolbarBtnItemClick, toolbarOptions);
+
+            grid.bind('beforeSubmitEdit', function (e) {
+                //如果编辑状态则不允许提交
+                //var editingrow = grid.getEditingRow();
+                //if (editingrow != null) {
+                //    return false;
+                //}
+                if (!iTools.validator.form()) {
+                    iTools.showInvalid();
+                    return false;
+                }
+                return true;
+            });
+            grid.bind('afterSubmitEdit', function (e) {
+                var isAddNew = e.record['__status'] == "add";
+                var data = $.extend({ ParentMenuId: currentMenuParentNo }, e.newdata);
+                data.IsMenu = data.IsMenu == 1;
+                data.IsVisible = data.IsVisible == 1;
+                if (!isAddNew) {
+                    data.MenuId = e.record.MenuId;
+                }
+                $.ajax({
+                    loading: '正在保存数据中...',
+                    url: '/Menus/' + (isAddNew ? "Add" : "Update"),
+                    data: data,
+                    type:"post",
+                    success: function (data) {
+                        console.info(data);
+                        if (data == "Success") {
+                            grid.loadData();
+                            treefresh();
+                            iTools.tip('保存成功!');
+                        } else {
+                            iTools.tip('保存失败,请检查控制器与路径是否匹配!');
+                        }
+                    },
+                    error: function (message) {
+                        iTools.tip(message);
+                    }
+                });
+            });
+    </script>
+}

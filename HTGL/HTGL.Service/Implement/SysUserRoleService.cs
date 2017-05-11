@@ -123,11 +123,11 @@ namespace HTGL.Service.Implement
             var roleUser = FindBy(p => p.RoleId == roleId && p.UserId == userId);
             if (roleUser != null)
             {
-                var roleMenu = _sysRoleMenuRepository.Entities.Where(p => p.RoleId == roleId).ToList();
+                var roleMenu = _sysRoleMenuRepository.Entities.Where(p =>p.Status && p.RoleId == roleId).ToList();
                 if (roleMenu.Count > 0)
                 {
-                    var arr = roleMenu.Select(p => p.MenuId).ToArray();
-                    var menus= SysMenus.Where(p=>arr.Contains(p.MenuId)).ToList();
+                    var arr = roleMenu.Select(p =>p.MenuId).ToArray();
+                    var menus= SysMenus.Where(p=>p.IsVisible &&p.IsMenu && arr.Contains(p.MenuId)).ToList();
 
                     List<SysMenuVM> menusList = new List<SysMenuVM>();
                     //获取当前角色的json菜单数据
@@ -143,9 +143,9 @@ namespace HTGL.Service.Implement
                             SysMenuVM childViewMenu = SysMenuVM.ToViewModel(childMenu);
                             if (childViewMenu.ParentID == roleMenuParent.ID)
                             {
-                                if (roleMenuParent.Children == null)
-                                    roleMenuParent.Children = new List<SysMenuVM>();
-                                roleMenuParent.Children.Add(childViewMenu);
+                                if (roleMenuParent.children == null)
+                                    roleMenuParent.children = new List<SysMenuVM>();
+                                roleMenuParent.children.Add(childViewMenu);
                             }
                         }
                         menusList.Add(roleMenuParent);

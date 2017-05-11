@@ -83,9 +83,9 @@ namespace HTGL.Service.Implement
             if (!string.IsNullOrEmpty(username))
                 data.Where(p => p.UserName == username);
             if (startDt != null)
-                data = data.Where(p => p.OperatingTime >= startDt.Value).ToList();
+                data = data.Where(p => p.OperatingTime.Date>= startDt.Value.Date).ToList();
             if (endDt != null)
-                data = data.Where(p => p.OperatingTime <= endDt.Value).ToList();
+                data = data.Where(p => p.OperatingTime.Date <= endDt.Value.Date).ToList();
             if (!string.IsNullOrEmpty(ipaddress))
                 data = data.Where(p => p.OperatingIp == ipaddress).ToList();
             count = data.Count();

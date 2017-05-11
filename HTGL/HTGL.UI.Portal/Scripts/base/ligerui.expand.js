@@ -11,7 +11,7 @@ $.extend($.ligerDefaults.Grid, {
     headerRowHeight: 30,
     allowUnSelectRow: true,
     onError: function (result, b) {
-        iTools.tip('发现系统错误 ' + b);
+        LG.tip('发现系统错误 ' + b);
     }
 });
 
@@ -67,7 +67,6 @@ $.extend($.ligerui.controls.Grid.prototype, {
                 changedRows.push($.extend({}, rows[i], { __status: status }));
             }
         }
-
     }
 });
 
@@ -176,8 +175,7 @@ $.ligerDefaults.Grid.editors['numberbox'] = {
     setValue: function (input, value, editParm) {
         var column = editParm.column;
         var precision = column.editor.precision;
-        if (!isNaN(value))
-            input.val(value.toFixed(precision));
+        input.val(value.toFixed(precision));
     },
     resize: function (input, width, height, editParm) {
         input.width(width).height(height);
@@ -395,7 +393,7 @@ $.ligerui.controls.Grid.prototype.showFilter = function () {
     function reLoadHistory() {
         historySelect.html('<option value="0">历史查询记录</options>');
         var key = getKey();
-        var history = iTools.cookies.get(key);
+        var history = LG.cookies.get(key);
         if (history) {
             var data = JSON2.parse(history);
             $(data).each(function () {
@@ -406,13 +404,13 @@ $.ligerui.controls.Grid.prototype.showFilter = function () {
     function removeHistory(name) {
         var key = getKey();
         var data;
-        var history = iTools.cookies.get(key);
+        var history = LG.cookies.get(key);
         if (history) {
             data = JSON2.parse(history);
             for (var i = 0, l = data.length; i < l; i++) {
                 if (data[i].name == name) {
                     data.splice(i, 1);
-                    iTools.cookies.set(key, JSON2.stringify(data));
+                    LG.cookies.set(key, JSON2.stringify(data));
                     return;
                 }
             }
@@ -422,7 +420,7 @@ $.ligerui.controls.Grid.prototype.showFilter = function () {
     function addHistory(name) {
         var key = getKey();
         var data;
-        var history = iTools.cookies.get(key);
+        var history = LG.cookies.get(key);
         if (history) {
             data = JSON2.parse(history);
             data.push({ name: name, value: filter.getData() });
@@ -431,12 +429,12 @@ $.ligerui.controls.Grid.prototype.showFilter = function () {
         else {
             data = [{ name: name, value: filter.getData() }];
         }
-        iTools.cookies.set(key, JSON2.stringify(data));
+        LG.cookies.set(key, JSON2.stringify(data));
     }
 
     function getHistoryRule(name) {
         var key = getKey();
-        var history = iTools.cookies.get(key);
+        var history = LG.cookies.get(key);
         if (history) {
             var data = JSON2.parse(history);
             for (var i = 0, l = data.length; i < l; i++) {
@@ -561,7 +559,6 @@ $.ligerui.controls.ComboBox.prototype.openSelect = function (options) {
         return false;
     });
 
-
     function getGridHeight() {
         if (options.grid.height) return options.grid.height;
         var height = options.height - 60;
@@ -615,7 +612,7 @@ $.ligerui.controls.ComboBox.prototype.openSelect = function (options) {
                 var containerBtn2 = $('<li></li>');
                 $("ul:first", formPanle).append(containerBtn1).append(containerBtn2).after('<div class="l-clear"></div>');
 
-                iTools.addSearchButtons(formPanle, grid, containerBtn1, containerBtn2);
+                LG.addSearchButtons(formPanle, grid, containerBtn1, containerBtn2);
             }
             else {
                 formPanle.remove();

@@ -9,9 +9,14 @@ using HTGL.Service.Implement;
 using HTGL.Service.Interface;
 using HTGL.UI.Portal.Common;
 using System.ComponentModel;
+using System.Security.Policy;
+using HTGL.UI.Portal.Areas.Cms.Controllers.CustomsAttribute;
 
 namespace HTGL.UI.Portal.Areas.Cms.Controllers
 {
+
+
+
     public class ManageController : BaseController
     {
 
@@ -44,6 +49,8 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
             WriteOperateLog("登出", "[用户登录] 退出成功", EnumActionOperatonType.LOGIN);
             return Content(EnumActionExecutedStatus.Success.ToString());
         }
+
+        [LoginCheckFilterAttribute(IsChecked = true)]
         public ActionResult Index()
         {
 
@@ -149,6 +156,7 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
             CacheHelper.SetCache("SystemIcons", listFiles, new TimeSpan(24, 0, 0));
             return Json(listFiles, JsonRequestBehavior.AllowGet);
         }
+       
         #endregion
     }
 }

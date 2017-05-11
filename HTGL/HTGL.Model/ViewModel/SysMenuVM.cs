@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -18,7 +19,9 @@ namespace HTGL.Model
         public int ParentID { get; set; }
         public string LinkUrl { get; set; }
         public string MenuController { get; set; }
-        public List<SysMenuVM> Children { get; set; }
+        public bool? IsVisible { get; set; }
+        public bool? IsMenu { get; set; }
+        public List<SysMenuVM> children { get; set; }
 
         /// <summary>
         /// 实体转换
@@ -42,6 +45,8 @@ namespace HTGL.Model
             viewModel.ParentID = entity.ParentMenuId;
             viewModel.LinkUrl = entity.Url;
             viewModel.MenuController = entity.MenuController;
+            viewModel.IsVisible = entity.IsVisible;
+            viewModel.IsMenu = entity.IsMenu;
             return viewModel;
         }
     }

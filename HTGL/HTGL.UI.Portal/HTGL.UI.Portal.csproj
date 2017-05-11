@@ -150,6 +150,7 @@
     <Compile Include="Areas\Cms\Controllers\BaseController.cs" />
     <Compile Include="Areas\Cms\Controllers\CustomsAttribute\LoginCheckFilterAttribute.cs" />
     <Compile Include="Areas\Cms\Controllers\ManageController.cs" />
+    <Compile Include="Areas\Cms\Controllers\MenusController.cs" />
     <Compile Include="Areas\Cms\Controllers\OperateLogController.cs" />
     <Compile Include="Areas\Cms\Controllers\SysDbBackupController.cs" />
     <Compile Include="Common\AuthHelper.cs" />
@@ -2061,6 +2062,8 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\js\iconselector.js" />
+    <Content Include="Scripts\js\validator.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -2107,6 +2110,9 @@
       <Project>{59bed2a8-a507-4db0-a932-9067be15a665}</Project>
       <Name>HTGL.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Cms\Views\Menus\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
