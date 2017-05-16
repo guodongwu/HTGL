@@ -43,6 +43,7 @@
     <Compile Include="Implement\SysDictService.cs" />
     <Compile Include="Implement\SysFunctionService.cs" />
     <Compile Include="Implement\SysLogService.cs" />
+    <Compile Include="Implement\SysMenuFunctionService.cs" />
     <Compile Include="Implement\SysMenuService.cs" />
     <Compile Include="Implement\SysRoleMenuService.cs" />
     <Compile Include="Implement\SysRoleService.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Interface\ISysLogService.cs" />
     <Compile Include="Interface\ISysDictService.cs" />
     <Compile Include="Interface\ISysDbBackupService.cs" />
+    <Compile Include="Interface\ISysMenuFunctionService.cs" />
     <Compile Include="Interface\ISysMenuService.cs" />
     <Compile Include="Interface\ISysRoleMenuService.cs" />
     <Compile Include="Interface\ISysUserService.cs" />

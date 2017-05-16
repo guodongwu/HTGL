@@ -58,14 +58,30 @@ namespace HTGL.Service.Implement
 
         public OperationResult Remove(SysUser sysUser)
         {
-            _sysUserRepository.Delete(sysUser);
-            return new OperationResult(OperationResultType.Success, "删除数据成功！");
+            try
+            {
+                _sysUserRepository.Delete(sysUser);
+                return new OperationResult(OperationResultType.Success, "删除数据成功！");
+            }
+            catch (Exception)
+            {
+                
+                return new OperationResult(OperationResultType.Error, "删除数据失败！");
+            }
         }
 
         public OperationResult Save(SysUser sysUser)
         {
-            _sysUserRepository.Update(sysUser);
-            return new OperationResult(OperationResultType.Success, "修改数据成功！");
+            try
+            {
+                _sysUserRepository.Update(sysUser);
+                return new OperationResult(OperationResultType.Success, "修改数据成功！");
+            }
+            catch (Exception)
+            {
+                
+                 return new OperationResult(OperationResultType.Error, "修改数据失败！");
+            }
         }
 
         public SysUser FindBy(Func<SysUser, bool> where)

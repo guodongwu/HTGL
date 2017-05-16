@@ -43,6 +43,5 @@ D:\personal\HTGL\HTGL.Component.Tools\bin\Debug\System.Web.Razor.xml
 D:\personal\HTGL\HTGL.Component.Tools\bin\Debug\System.Web.WebPages.xml
 D:\personal\HTGL\HTGL.Component.Tools\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\personal\HTGL\HTGL.Component.Tools\bin\Debug\System.Web.WebPages.Razor.xml
-D:\personal\HTGL\HTGL.Component.Tools\obj\Debug\HTGL.Component.Tools.csprojResolveAssemblyReference.cache
 D:\personal\HTGL\HTGL.Component.Tools\obj\Debug\HTGL.Component.Tools.dll
 D:\personal\HTGL\HTGL.Component.Tools\obj\Debug\HTGL.Component.Tools.pdb

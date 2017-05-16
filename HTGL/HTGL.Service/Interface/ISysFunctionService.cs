@@ -16,7 +16,7 @@ namespace HTGL.Service.Interface
         OperationResult Remove(SysFunction sysFunction);
         OperationResult Save(SysFunction sysFunction);
 
-        SysDbBackup FindBy(Func<SysFunction, bool> where);
+        SysFunction FindBy(Func<SysFunction, bool> where);
 
         List<SysFunction> FindAll();
         List<SysFunction> FindAll(Func<SysFunction, bool> where);

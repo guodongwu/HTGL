@@ -136,27 +136,30 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
 
         }
         [Description("获取所有的按钮图标")]
-        public ActionResult GetIcons()
+        public ActionResult GetIcons(string icon = "")
         {
-            var cache = CacheHelper.GetCache("SystemIcons");
+            var cache = CacheHelper.GetCache("SystemIcons" + icon);
             if (cache != null)
             {
                 return Json(cache, JsonRequestBehavior.AllowGet);
             }
             var rootPath = HttpContext.Server.MapPath("~/Content/icons/");
             string dirPath = rootPath + "32X32\\";
+            if (icon == "silkicons")
+                dirPath = rootPath + "silkicons\\";
+
 
             var files = FileHelper.GetFileNames(dirPath);
             var listFiles = new List<string>();
             foreach (var file in files)
             {
-                listFiles.Add(file.Replace(dirPath, "icons/32X32/"));
+                listFiles.Add(file.Replace(dirPath, icon == "silkicons" ? "icons/silkicons/" : "icons/32X32/"));
             }
             //缓存一天吧
             CacheHelper.SetCache("SystemIcons", listFiles, new TimeSpan(24, 0, 0));
             return Json(listFiles, JsonRequestBehavior.AllowGet);
         }
-       
+
         #endregion
     }
 }

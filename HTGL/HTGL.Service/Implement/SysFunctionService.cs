@@ -32,7 +32,8 @@ namespace HTGL.Service.Implement
         }
         public OperationResult Add(SysFunction sysFunction)
         {
-            throw new NotImplementedException();
+            int result = _sysFunctionRepository.Insert(sysFunction);
+            return new OperationResult(result > 0 ? OperationResultType.Success : OperationResultType.Error,"",sysFunction.FunctionId);
         }
 
         public OperationResult Remove(SysFunction sysFunction)
@@ -45,7 +46,7 @@ namespace HTGL.Service.Implement
             throw new NotImplementedException();
         }
 
-        public SysDbBackup FindBy(Func<SysFunction, bool> @where)
+        public SysFunction FindBy(Func<SysFunction, bool> @where)
         {
             throw new NotImplementedException();
         }

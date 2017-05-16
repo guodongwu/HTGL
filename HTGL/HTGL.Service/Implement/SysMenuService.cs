@@ -28,27 +28,52 @@ namespace HTGL.Service.Implement
         }
         public OperationResult Add(SysMenu sysMenu)
         {
-            _sysMenuRepository.Insert(sysMenu);
-            return new OperationResult(OperationResultType.Success);
+            try
+            {
+                int id=  _sysMenuRepository.Insert(sysMenu);
+                return new OperationResult(OperationResultType.Success,"添加成功",sysMenu.MenuId);
+            }
+            catch (Exception)
+            {
+                
+                return new OperationResult(OperationResultType.Error,"添加失败");
+            }
         }
 
         public OperationResult Remove(SysMenu sysMenu)
         {
-            sysMenu.IsVisible = false;
-            _sysMenuRepository.Update(sysMenu);
-            return new OperationResult(OperationResultType.Success);
+            try
+            {
+                sysMenu.IsVisible = false;
+                _sysMenuRepository.Update(sysMenu);
+                return new OperationResult(OperationResultType.Success,"删除成功");
+            }
+            catch (Exception)
+            {
+
+                return new OperationResult(OperationResultType.Error, "删除失败");
+            }
         }
 
         public OperationResult Save(SysMenu sysMenu)
         {
-            _sysMenuRepository.Update(sysMenu);
-            return new OperationResult(OperationResultType.Success);
+            try
+            {
+
+                _sysMenuRepository.Update(sysMenu);
+                return new OperationResult(OperationResultType.Success,"修改成功");
+            }
+            catch (Exception)
+            {
+                
+                return new OperationResult(OperationResultType.Error,"修改失败");
+            }
 
         }
 
         public SysMenu FindBy(Func<SysMenu, bool> @where)
         {
-            throw new NotImplementedException();
+            return SysMenus.FirstOrDefault(where);
         }
 
         public List<SysMenu> FindAll()

@@ -18,6 +18,7 @@ namespace HTGL.Model.Configuration
             // Property(u => u.DbName).HasColumnName("DbName").IsRequired();
            
             Property(u => u.Name).IsRequired();
+            
      
         }
     }

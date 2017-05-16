@@ -52,14 +52,30 @@ namespace HTGL.Service.Implement
 
         public OperationResult Remove(SysRole sysRole)
         {
-            _sysRoleRepository.Delete(sysRole);
-            return new OperationResult(OperationResultType.Success, "删除数据成功！");
+            try
+            {
+                _sysRoleRepository.Delete(sysRole);
+                return new OperationResult(OperationResultType.Success, "删除数据成功！");
+            }
+            catch (Exception)
+            {
+                
+                return new OperationResult(OperationResultType.Error, "删除数据失败!");
+            }
         }
 
         public OperationResult Save(SysRole sysRole)
         {
-            _sysRoleRepository.Update(sysRole);
-            return new OperationResult(OperationResultType.Success, "修改数据成功！");
+            try
+            {
+                _sysRoleRepository.Update(sysRole);
+                return new OperationResult(OperationResultType.Success, "修改数据成功！");
+            }
+            catch (Exception)
+            {
+                
+                return new OperationResult(OperationResultType.Error, "修改数据失败!");
+            }
         }
 
         public SysRole FindBy(Func<SysRole, bool> where)

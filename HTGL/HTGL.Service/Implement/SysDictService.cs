@@ -74,14 +74,30 @@ namespace HTGL.Service.Implement
 
         public OperationResult Remove(SysDict sysDict)
         {
-            _sysDictRepository.Delete(sysDict);
-            return new OperationResult(OperationResultType.Success, "删除数据成功！");
+            try
+            {
+                _sysDictRepository.Delete(sysDict);
+                return new OperationResult(OperationResultType.Success, "删除数据成功！");
+            }
+            catch (Exception ex)
+            {
+                
+                return new OperationResult(OperationResultType.Error, "删除数据失败！");
+            }
         }
 
         public OperationResult Save(SysDict sysDict)
         {
-            _sysDictRepository.Update(sysDict);
-            return new OperationResult(OperationResultType.Success, "修改数据成功！");
+            try
+            {
+                _sysDictRepository.Update(sysDict);
+                return new OperationResult(OperationResultType.Success, "修改数据成功！");
+            }
+            catch (Exception)
+            {
+                
+                 return new OperationResult(OperationResultType.Error, "修改数据失败！");
+            }
         }
     }
 }

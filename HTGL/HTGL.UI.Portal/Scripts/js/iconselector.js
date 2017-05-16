@@ -42,7 +42,7 @@ $(document).on('mouseover', 'ul.iconlist li', function () {
     winicons.hide();
 });
 
-function f_openIconsWin() {
+function f_openIconsWin(obj) {
     if (winicons) {
         winicons.show();
         return;
@@ -53,8 +53,12 @@ function f_openIconsWin() {
         width: 470, height: 280, modal: true
     });
     if (!jiconlist.attr("loaded")) {
+        var iconUrl = "/Manage/GetIcons";
+        if (obj == "silkicons") {
+            iconUrl = iconUrl + "?icon=silkicons";
+        }
         $.ajax({
-            url: '/Manage/GetIcons',
+            url: iconUrl,
             loading: '正在加载图标中...',
             success: function (data) {
                 for (var i = 0, l = data.length; i < l; i++) {

@@ -17,7 +17,7 @@ namespace HTGL.Model.Configuration
             // Ignore(u =>u.xid); 被排除的元素
             // Property(u => u.DbName).HasColumnName("DbName").IsRequired();
             HasKey(u => u.MFId);
-            Property(u => u.FunctionId).IsRequired();
+            //Property(u => u.FunctionId).IsRequired();
             Property(u => u.MenuId).IsRequired();
             HasRequired(u => u.SysMenu).WithMany().HasForeignKey(u => u.MenuId);
             HasRequired(u => u.SysFunction).WithMany().HasForeignKey(u => u.FunctionId);

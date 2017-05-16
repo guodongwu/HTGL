@@ -1,0 +1,323 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<body style="padding: 2px; height: 100%; text-align: center;">
+    <div id="layout">
+        <div position="center" title="菜单按钮管理">
+            <form id="mainform">
+                <div id="maingrid" style="margin: 2px;">
+                </div>
+            </form>
+        </div>
+    </div>
+    <ul class="iconlist">
+    </ul>
+
+</body>
+@section scripts
+{
+
+    <script type="text/javascript">
+        var controller = '@ViewBag.ControllerName';
+        var MenuID = '@ViewBag.MenuID';
+        //验证
+        var maingform = $("#mainform");
+        $.metadata.setType("attr", "validate");
+        iTools.validate(maingform, { debug: false });
+
+        function toolbarBtnItemClick(item) {
+            var editingrow = grid.getEditingRow();
+            switch (item.id) {
+            case "Add":
+                if (editingrow == null) {
+                    grid.addEditRow();
+
+                } else {
+                    iTools.tip('请先提交或取消修改');
+                }
+                break;
+            case "Update":
+                if (editingrow == null) {
+                    var row = grid.getSelectedRow();
+                    console.info(row);
+                    if (!row) {
+                        iTools.tip('请选择行');
+                        return;
+                    }
+                    grid.beginEdit(row);
+                } else {
+                    iTools.tip('请先提交或取消修改');
+                }
+                break;
+            case "Save":
+                if (editingrow != null) {
+                    grid.endEdit(editingrow);
+                } else {
+                    iTools.tip('现在不在编辑状态!');
+                }
+                break;
+            case "Delete":
+                $.ligerDialog.confirm('确定删除吗(该删除操作只是软删除)?',
+                    function(confirm) {
+                        if (confirm) {
+                            var selected = grid.getSelected();
+                            if (selected) {
+                                if (!selected.MFId) {
+                                    grid.deleteRow(selected);
+                                    return;
+                                }
+                                var data = $.extend({}, selected);
+                                data.MFId = selected.MFId;
+                                $.ajax({
+                                    url: '/MenusButtonsManage/Delete',
+                                    loading: '正在删除中...',
+                                    data: data,
+                                    type: "post",
+                                    success: function() {
+                                        iTools.tip('删除成功!');
+                                        grid.loadData();
+                                        treefresh();
+                                    },
+                                    error: function(message) {
+                                        iTools.showError(message);
+                                    }
+                                });
+                            } else {
+                                iTools.tip('请选择行!');
+                            }
+                        }
+                    });
+                break;
+            case "Cancel":
+                if (editingrow != null) {
+                    if (!editingrow.MenuId) {
+                        grid.deleteRow(editingrow);
+                        return;
+                    }
+                    grid.cancelEdit(editingrow);
+                } else {
+                    iTools.tip('现在不在编辑状态!');
+                }
+                break;
+            case "RealDelete":
+                $.ligerDialog.confirm('确定删除吗(该删除操作将会永久删除,一旦删除将无法挽回)?',
+                    function(confirm) {
+                        if (confirm) {
+                            var selected = grid.getSelected();
+                            if (selected) {
+                                if (!selected.MFId) {
+                                    grid.deleteRow(selected);
+                                    return;
+                                }
+                                var data = $.extend({}, selected);
+                                data.MFId = selected.MFId;
+                                $.ajax({
+                                    url: '/MenusButtonsManage/RealDelete',
+                                    loading: '正在删除中...',
+                                    data: data,
+                                    success: function() {
+                                        iTools.tip('删除成功!');
+                                        grid.loadData();
+                                    },
+                                    error: function(message) {
+                                        iTools.showError(message);
+                                    }
+                                });
+                            } else {
+                                iTools.tip('请选择行!');
+                            }
+                        }
+                    });
+                break;
+            }
+        }
+
+        //var layout = $("#layout").ligerLayout();
+        var grid = $("#maingrid")
+            .ligerGrid({
+                columns: [
+                    { display: 'MenuId', name: 'MenuId', align: 'left', width: 100, minWidth: 60, hide: true },
+                    { display: 'FunctionId', name: 'FunctionId', align: 'left', width: 100, minWidth: 60, hide: true },
+                    { display: 'MFId', name: 'MFId', align: 'left', width: 100, minWidth: 60, hide: true },
+                    {
+                        display: '按钮名称',
+                        name: 'FunctionName',
+                        isSort: false,
+                        align: 'left',
+                        width: 150,
+                        minWidth: 60,
+                        validate: { required: true },
+                        editor: { type: "text" }
+                    },
+                    {
+                        display: '按钮控制器',
+                        name: 'ControllerName',
+                        align: 'left',
+                        width: 200,
+                        minWidth: 60,
+                        validate: { required: true },
+                        editor: { type: "text" }
+                    }, {
+                        display: '按钮动作',
+                        name: 'ActionName',
+                        align: 'left',
+                        width: 200,
+                        minWidth: 60,
+                        validate: { required: true },
+                        editor: { type: "text" }
+
+                    }, {
+                        display: '是否显示',
+                        name: 'IsVisible',
+                        align: 'left',
+                        isSort: false,
+                        width: 60,
+                        minWidth: 60,
+                        editor: { type: 'checkbox' },
+                        render: function(item) {
+                            if (item.IsVisible)
+                                return "显示";
+                            else
+                                return "隐藏";
+                        }
+                    },
+                    {
+                        display: '按钮图标',
+                        name: 'FunctionIcon',
+                        isSort: false,
+                        align: 'left',
+                        width: 200,
+                        minWidth: 50,
+                        validate: { required: true },
+                        editor: {
+                            type: 'select',
+                            ext: function(rowdata) {
+                                return {
+                                    onBeforeOpen: function() {
+                                        currentComboBox = this;
+                                        f_openIconsWin("silkicons");
+                                        return false;
+                                    },
+                                    render: function() {
+                                        return rowdata.FunctionIcon;
+                                    }
+                                };
+                            }
+                        },
+                        render: function(item) {
+                            return "<div style='width:100%;height:100%;'><img src='" + item.FunctionIcon + "'/></div>";
+
+                        }
+                    },
+                    {
+                        display: '菜单名称',
+                        name: 'MenuName',
+                        isSort: false,
+                        align: 'left',
+                        width: 60,
+                        minWidth: 60,
+                        render:function(item) {
+                            if (item && item.MenuName) {
+                                return item.MenuName;
+                            } else {
+                                return '';
+                            }
+                                 
+                        }
+                    },
+                    {
+                        display: '按钮Ajax路径',
+                        name: 'Url',
+                        isSort: false,
+                        align: 'left',
+                        width: 300,
+                        minWidth: 60,
+                        render: function(item) {
+                            return "/Cms/" + item.ControllerName + "/" + item.ActionName;
+                        }
+                    }
+                ],
+                dataAction: 'server',
+                pageSize: 10,
+                toolbar: {},
+                sortName: 'MFId',
+                url: '/Cms/MenusButtonsManage/GetMenuButtons',
+                parms: { MenuController: controller },
+                width: '98%',
+                height: '100%',
+                heightDiff: -5,
+                checkbox: false,
+                usePager: true,
+                enabledEdit: true,
+                clickToEdit: false,
+                fixedCellHeight: true,
+                rowHeight: 25
+            });
+
+
+        //本地按钮
+        var toolbarOptions = [
+            {
+                text: '保存',
+                id: 'Save',
+                click: toolbarBtnItemClick,
+                img: "@Url.Content("~/Content/icons/silkicons/page_save.png")"
+            },
+            {
+                text: '取消',
+                id: 'Cancel',
+                click: toolbarBtnItemClick,
+                img: "@Url.Content("~/Content/icons/silkicons/cancel.png")"
+            }
+        ];
+
+
+        iTools.loadToolbar(grid, toolbarBtnItemClick, toolbarOptions);
+        var selectValue;
+        grid.bind('beforeSubmitEdit',
+            function(e) {
+                console.info(e);
+                if (!iTools.validator.form()) {
+                    iTools.showInvalid();
+                    return false;
+                }
+                return true;
+            });
+        grid.bind('afterSubmitEdit',
+            function(e) {
+
+                var isAddNew = e.record['__status'] == "add";
+                var data = e.newdata;
+                console.info(e);
+                data.IsVisible = data.IsVisible == 1;
+                if (!isAddNew) {
+                    data.MFId = e.record.MFId;
+                    data.FunctionId = e.record.FunctionId;
+                    data.MenuId = e.record.MenuId;
+                    console.info(e.record.SysMenu);
+                    console.info(e.record.SysFunction);
+                    data.SysMenu = e.record.SysMenu;
+                    data.SysFunction = e.record.SysFunction;
+                } else {
+                    data.MenuId = MenuID;
+                    data.SysMenu = e.record.SysMenu;
+                }
+
+                $.ajax({
+                    loading: '正在保存数据中...',
+                    url: '/MenusButtonsManage/' + (isAddNew ? "Add" : "Update"),
+                    data: data,
+                    success: function() {
+                        grid.loadData();
+                        iTools.tip('保存成功!');
+                    },
+                    error: function(message) {
+                        iTools.tip(message);
+                    }
+                });
+            });
+
+    </script>
+
+
+}

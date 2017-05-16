@@ -58,14 +58,29 @@ namespace HTGL.Service.Implement
 
         public OperationResult Remove(SysRoleMenu sysRoleMenu)
         {
-            _sysRoleMenuRepository.Delete(sysRoleMenu);
-            return new OperationResult(OperationResultType.Success, "删除数据成功！");
+            try
+            {
+                _sysRoleMenuRepository.Delete(sysRoleMenu);
+                return new OperationResult(OperationResultType.Success, "删除数据成功！");
+            }
+            catch (Exception)
+            {
+                
+                return new OperationResult(OperationResultType.Error, "删除数据失败!");
+            }
         }
 
         public OperationResult Save(SysRoleMenu sysRoleMenu)
         {
-            _sysRoleMenuRepository.Update(sysRoleMenu);
-            return new OperationResult(OperationResultType.Success, "修改数据成功！");
+            try
+            {
+                _sysRoleMenuRepository.Update(sysRoleMenu);
+                return new OperationResult(OperationResultType.Success, "修改数据成功！");
+            }
+            catch (Exception)
+            {
+                return new OperationResult(OperationResultType.Error, "修改数据失败!");
+            }
         }
 
         public SysRoleMenu FindBy(Func<SysRoleMenu, bool> where)

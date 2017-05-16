@@ -32,7 +32,7 @@ namespace HTGL.Model{
         /// <summary>  
         ///   
         /// </summary>      
-        public int? Status {get;set;}
+        public bool IsVisible {get;set;}
         
         /// <summary>  
         ///   

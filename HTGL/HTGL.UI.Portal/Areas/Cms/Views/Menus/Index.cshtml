@@ -21,7 +21,7 @@
         $.metadata.setType("attr", "validate");
         iTools.validate(maingform, { debug: false });
         //覆盖本页面grid的loading效果
-        iTools.overrideGridLoading();
+        //iTools.overrideGridLoading();
         var layout = $("#menulayout").ligerLayout({ leftWidth: 150 });
         var currentMenuParentNo;
         var tree = $("#menuTree").ligerTree({
@@ -132,7 +132,7 @@
                                         loading: '正在删除中...',
                                         data: data,
                                         success: function () {
-                                            iTools.tip('删除成功!');
+                                            iTools.tip('该功能暂时未开发，以后是否需要再说!');
                                             grid.loadData();
                                             treefresh();
                                         },
@@ -156,7 +156,7 @@
                                     return;
                                 else {
                                     var params = 'controllerName=' + selected.MenuController + '&MenuNo=MenusButtonsManage&MenuID=' + selected.MenuId;
-                                    top.f_addTab(null, '[' + selected.Name + ']菜单按钮管理', '/MenusButtonsManage/Index?' + params);
+                                    top.f_addTab(null, '[' + selected.Name + ']菜单按钮管理', '/Cms/MenusButtonsManage/Index?' + params);
                                 }
                             }
                             else
@@ -180,7 +180,16 @@
                       { display: '菜单编号', name: 'MenuId', align: 'left', width: 100, minWidth: 60 },
                       { display: '上级编号ID', name: 'ParentMenuId', align: 'left', width: 100, minWidth: 60, hide: true },
                       { display: '上级编号', name: 'ParentMenuId', align: 'left', width: 100, minWidth: 60 },
-                      { display: '控制器', name: 'MenuController', align: 'left', width: 130, isSort: false, minWidth: 60, editor: { type: 'text' } },
+                    {
+                        display: '控制器', name: 'MenuController', align: 'left', width: 130, isSort: false, minWidth: 60, editor: { type: 'text' },
+                        render: function (item) {
+                            if (item && item.MenuController) {
+                                return item.MenuController;
+                            } else {
+                                return "";
+                            }
+                        }
+                    },
                     {
                         display: '是否显示', name: 'IsVisible', align: 'left', isSort: false, width: 60, minWidth: 60, editor: { type: 'checkbox' },
                         render: function (item) {
@@ -220,7 +229,13 @@
                             }
                     },
                     {
-                        display: '菜单链接地址', name: 'Url', isSort: false, align: 'left', width: 300, minWidth: 60, editor: { type: 'text' }
+                        display: '菜单链接地址', name: 'Url', isSort: false, align: 'left', width: 300, minWidth: 60, editor: { type: 'text' }, render: function (item) {
+                            if (item && item.Url) {
+                                return item.Url;
+                            } else {
+                                return "";
+                            }
+                        }
                     }
                 ], dataAction: 'server', pageSize: 10, toolbar: {}, sortname: 'MenuId',
                 width: '96%', height: '100%', heightDiff: -5, checkbox: false, usePager: true, enabledEdit: true, clickToEdit: false,
@@ -258,7 +273,7 @@
                     loading: '正在保存数据中...',
                     url: '/Menus/' + (isAddNew ? "Add" : "Update"),
                     data: data,
-                    type:"post",
+                    type: "post",
                     success: function (data) {
                         console.info(data);
                         if (data == "Success") {

@@ -79,6 +79,7 @@
     <Compile Include="SysUser.cs" />
     <Compile Include="SysUserRole.cs" />
     <Compile Include="SysDepartment.cs" />
+    <Compile Include="ViewModel\SysMenuFunctionVM.cs" />
     <Compile Include="ViewModel\SysMenuVM.cs" />
     <Compile Include="ViewModel\SysUserVM.cs" />
     <Compile Include="ViewModel\UIGrid.cs" />
