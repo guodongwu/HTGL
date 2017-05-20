@@ -9,6 +9,7 @@ using HTGL.Component.Tools;
 using HTGL.Data.Repositories;
 using HTGL.Model;
 using HTGL.Service.Interface;
+using HTGL.UI.Portal.Common;
 
 namespace HTGL.UI.Portal.Areas.Cms.Controllers
 {
@@ -61,6 +62,7 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
                 fs.ActionName = entity.ActionName;
                 fs.Icon = entity.FunctionIcon;
                 result = _sysFunctionService.Save(fs);
+                WriteOperateLog(EnumActionOperatonType.MenusButtonManage, EnumActionOperatonType.UPDATE, true);
                 return Content(result.ResultType.ToString());
             }
             catch (Exception)
@@ -102,6 +104,18 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
                         };
 
                         var result = _sysFunctionService.Add(fs);
+                        //添加关系
+                        var mf = new SysMenuFunction
+                        {
+                            MenuId = entity.MenuId,
+                            FunctionId = int.Parse(result.AppendData.ToString()),
+                            AddIp = ToolsHelper.GetUserIp(),
+                            AddTime = DateTime.Now,
+                            IsVisible = entity.IsVisible,
+                            AddUserId = GetUserId()
+                        };
+                        _sysMenuFunctionService.Add(mf);
+                        WriteOperateLog(EnumActionOperatonType.MenusButtonManage, EnumActionOperatonType.ADD, true);
                         return Content(result.ResultType.ToString());
                     }
                 }
@@ -110,5 +124,30 @@ namespace HTGL.UI.Portal.Areas.Cms.Controllers
             return Content(OperationResultType.Error.ToString());
         }
 
+        public ActionResult Delete(SysMenuFunctionVM entity)
+        {
+            try
+            {
+                var mf = _sysMenuFunctionService.FindBy(p => p.MFId == entity.MFId);
+                if (mf != null)
+                {
+                    mf.IsVisible = false;
+                    var result = _sysMenuFunctionService.Save(mf);
+                    WriteOperateLog(EnumActionOperatonType.MenusButtonManage, EnumActionOperatonType.DELETE, true);
+                    return Content(result.ResultType.ToString());
+                }
+            }
+            catch (Exception)
+            {
+                return Content(OperationResultType.Error.ToString());
+            }
+            return Content(OperationResultType.Error.ToString());
+        }
+
+        public ActionResult RealDelete(SysMenuFunctionVM entity)
+        {
+            return Content(OperationResultType.Success.ToString());
+
+        }
     }
 }

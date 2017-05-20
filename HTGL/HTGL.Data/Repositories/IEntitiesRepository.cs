@@ -52,6 +52,10 @@ namespace HTGL.Data.Repositories
     {
 
     }
+    public interface ISysDepartmentRepository : IRepository<SysDepartment, Int32>, IDependency
+    {
+
+    }
 
 }
 

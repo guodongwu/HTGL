@@ -37,12 +37,13 @@ namespace HTGL.Service.Implement
 
         public OperationResult Save(SysMenuFunction sysMenuFunction)
         {
-            throw new NotImplementedException();
+            int r = _sysMenuFunctionRepository.Update(sysMenuFunction);
+            return new OperationResult(r > 0 ? OperationResultType.Success : OperationResultType.Error);
         }
 
         public SysMenuFunction FindBy(Func<SysMenuFunction, bool> @where)
         {
-            throw new NotImplementedException();
+            return SysMenuFunctions.FirstOrDefault(where);
         }
 
         public List<SysMenuFunction> FindAll()
@@ -65,8 +66,8 @@ namespace HTGL.Service.Implement
             int count = 0;
             var sysmfs = SysMenuFunctions.Where(
                   p =>
-                      p.IsVisible && p.SysMenu.MenuController == MenuController &&
-                      p.SysFunction.ControllerName == MenuController && p.SysMenu.IsVisible && p.SysFunction.IsVisible).Distinct().ToList();
+                      p.SysMenu.MenuController == MenuController &&
+                      p.SysFunction.ControllerName == MenuController).Distinct().ToList();
             count = sysmfs.Count();
             int pageNumber = request.PageNumber;
             int pageSize = request.PageSize;

@@ -26,7 +26,7 @@ namespace HTGL.Repository.EF
         public DbSet<SysUser> SysUser { get; set; }
         public DbSet<SysUserRole> SysUserRole { get; set; }
         public DbSet<SysRoleMenu> SysRoleMenu { get; set; }
-
+        public DbSet<SysDepartment> SysDepartment { get; set; }
         #endregion
 
         public DefaultDbContext()
@@ -63,6 +63,7 @@ namespace HTGL.Repository.EF
             modelBuilder.Configurations.Add(new SysUserConfiguration());
             modelBuilder.Configurations.Add(new SysUserRoleConfiguration());
             modelBuilder.Configurations.Add(new SysRoleMenuConfiguration());
+            modelBuilder.Configurations.Add(new SysDepartmentConfiguration());
             #endregion
 
             base.OnModelCreating(modelBuilder);

@@ -1,0 +1,133 @@
+﻿<body style="padding: 10px; height: 100%; text-align: center;">
+    <ipnut type="hidden" id="MenuNo" value="Department" />
+    <div id="detail" style="display: none;">
+        <form id="mainform" method="post"></form>
+    </div>
+    <div id="maingrid"></div>
+    <script type="text/javascript">
+        //列表结构
+        var grid = $("#maingrid").ligerGrid({
+            columns: [{ display: "部门名称", name: "text", width: 280, type: "text", align: "left" },
+                { display: "部门描述", name: "desc", width: 480, isSort: false, type: "textarea", align: "left" },
+                { display: "部门ID", name: "id", hide: true }], dataAction: 'server', pageSize: 50, toolbar: {}, usePager: false,
+            url: '/Department/GetDeptGridTree', sortName: 'ParentID',
+            tree: { columnName: 'text' },
+            width: '98%', height: '100%', heightDiff: -10, checkbox: false
+        });
+
+        //加载toolbar
+        iTools.loadToolbar(grid, toolbarBtnItemClick);
+
+        //工具条事件
+        function toolbarBtnItemClick(item) {
+            switch (item.id) {
+                case "Add":
+                    var selected = grid.getSelected();
+                    showDetail({
+                        DeptParentName: selected ? selected.text : '',
+                        ParentID: selected ? selected.id : 0
+                    }, true);
+                    break;
+                case "Update":
+                    var selected = grid.getSelected();
+                    if (!selected) { iTools.tip('请选择行!'); return }
+                    var parent = grid.getParent(selected);
+
+                    showDetail({
+                        DeptParentName: parent ? parent.text : '',
+                        ParentID: parent && parent.id ? parent.id : 0,
+                        DeptName: selected.text,
+                        DeptDescription: selected.desc,
+                        DID: selected.id
+                    }, false);
+                    break;
+                case "Delete":
+                    $.ligerDialog.confirm('确定删除吗?该操作将会导致严重的后果,大量该部门下用户就会被删除?', function (confirm) {
+                        if (confirm)
+                            f_delete();
+                    });
+                    break;
+            }
+        }
+        function f_reload() {
+            grid.loadData();
+        }
+        function f_delete() {
+            var selected = grid.getSelected();
+            if (selected) {
+                $.ajax({
+                    url: '/Department/Delete',
+                    loading: '正在删除中...',
+                    data: { ID: selected.id },
+                    success: function () {
+                        iTools.showSuccess('删除成功');
+                        f_reload();
+                    },
+                    error: function (message) {
+                        iTools.showError(message);
+                    }
+                });
+            }
+            else {
+                iTools.tip('请选择行!');
+            }
+        }
+
+        var detailWin = null, curentData = null, currentIsAddNew;
+        function showDetail(data, isAddNew) {
+            curentData = data;
+            currentIsAddNew = isAddNew;
+            if (detailWin) {
+                detailWin.show();
+            }
+            else {
+                //创建表单结构
+                var mainform = $("#mainform");
+                mainform.ligerForm({
+                    inputWidth: 280,
+                    fields: [
+           { name: "DID", type: "hidden" },
+           { display: "部门名称", name: "DeptName", newline: true, labelWidth: 100, width: 220, space: 30, type: "text", validate: { required: true, maxlength: 50 } },
+           { display: "部门描述", name: "DeptDescription", newline: true, labelWidth: 100, width: 220, space: 30, type: "text" },
+           { display: "上级部门", name: "DeptParentName", newline: true, labelWidth: 100, width: 220, space: 30, type: "text" }],
+                    toJSON: JSON2.stringify
+                });
+                $("#DeptParentName").attr("readonly", "readonly");
+
+                detailWin = $.ligerDialog.open({
+                    target: $("#detail"),
+                    width: 450, height: 150, top: 90,
+                    buttons: [
+                    { text: '确定', onclick: function (item, dialog) { save(); dialog.hide(); } },
+                    { text: '取消', onclick: function () { detailWin.hide(); } }
+                    ]
+                });
+            }
+            if (curentData) {
+                $("#DeptParentName").val(curentData.DeptParentName);
+                $("#DeptName").val(curentData.DeptName);
+                $("#DeptDescription").val(curentData.DeptDescription);
+
+
+            }
+
+            function save() {
+                curentData = curentData || {};
+                curentData.DeptName = $("#DeptName").val();
+                curentData.DeptDescription = $("#DeptDescription").val();
+                curentData.ParentID = curentData.ParentID && curentData.ParentID != null ? curentData.ParentID : 0;
+                $.ajax({
+                    url: '/Department/' + (currentIsAddNew ? "Add" : "Update"),
+                    data: curentData,
+                    success: function () {
+                        f_reload();
+                        iTools.tip('保存成功!');
+                    },
+                    error: function (message) {
+                        iTools.tip(message);
+                    }
+                });
+            }
+        }
+    </script>
+</body>

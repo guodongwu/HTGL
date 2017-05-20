@@ -1,0 +1,98 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{AF0018EB-79DA-4058-B759-BA591338DF69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{9F5D367B-BAC0-4F79-8B92-F2842363F385}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{E68235BD-B604-4F4A-99F5-455BB6647ECE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{50346A5E-007D-41FD-9F0F-E0E093B7CADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.Entity", "Management.Entity\Management.Entity.csproj", "{9C9E1483-20E0-41F8-B524-D00FF86B9587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.Dao", "Management.Dao\Management.Dao.csproj", "{73B3507D-58CE-47C5-8A59-8A3B8A6324F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.Web", "Management.Web\Management.Web.csproj", "{E8E194C3-CBA6-4436-890B-9AA09C705E3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.BLL", "Management.BLL\Management.BLL.csproj", "{3C081D15-FC51-424B-B3D3-4D74F4379A02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{DDECFA4C-D8F4-4D19-89A4-3A2FCA7181A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.Tools", "Management.Tools\Management.Tools.csproj", "{C85530BC-C2D9-4939-8EBA-64E0940710F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.ViewModel", "Management.ViewModel\Management.ViewModel.csproj", "{59489C28-D88E-4788-B5AA-CD88071052D7}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs19
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Management.BLL\\Management.BLL.csproj
+		SccProjectTopLevelParentUniqueName1 = ManagementSolution.sln
+		SccProjectName1 = Management.BLL
+		SccLocalPath1 = Management.BLL
+		SccProjectUniqueName2 = Management.Dao\\Management.Dao.csproj
+		SccProjectTopLevelParentUniqueName2 = ManagementSolution.sln
+		SccProjectName2 = Management.Dao
+		SccLocalPath2 = Management.Dao
+		SccProjectUniqueName3 = Management.Entity\\Management.Entity.csproj
+		SccProjectTopLevelParentUniqueName3 = ManagementSolution.sln
+		SccProjectName3 = Management.Entity
+		SccLocalPath3 = Management.Entity
+		SccProjectUniqueName4 = Management.Tools\\Management.Tools.csproj
+		SccProjectTopLevelParentUniqueName4 = ManagementSolution.sln
+		SccProjectName4 = Management.Tools
+		SccLocalPath4 = Management.Tools
+		SccProjectUniqueName5 = Management.ViewModel\\Management.ViewModel.csproj
+		SccProjectTopLevelParentUniqueName5 = ManagementSolution.sln
+		SccProjectName5 = Management.ViewModel
+		SccLocalPath5 = Management.ViewModel
+		SccProjectUniqueName6 = Management.Web\\Management.Web.csproj
+		SccProjectTopLevelParentUniqueName6 = ManagementSolution.sln
+		SccProjectName6 = Management.Web
+		SccLocalPath6 = Management.Web
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C9E1483-20E0-41F8-B524-D00FF86B9587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C9E1483-20E0-41F8-B524-D00FF86B9587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C9E1483-20E0-41F8-B524-D00FF86B9587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C9E1483-20E0-41F8-B524-D00FF86B9587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B3507D-58CE-47C5-8A59-8A3B8A6324F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B3507D-58CE-47C5-8A59-8A3B8A6324F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B3507D-58CE-47C5-8A59-8A3B8A6324F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B3507D-58CE-47C5-8A59-8A3B8A6324F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E194C3-CBA6-4436-890B-9AA09C705E3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E194C3-CBA6-4436-890B-9AA09C705E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E194C3-CBA6-4436-890B-9AA09C705E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E194C3-CBA6-4436-890B-9AA09C705E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C081D15-FC51-424B-B3D3-4D74F4379A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C081D15-FC51-424B-B3D3-4D74F4379A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C081D15-FC51-424B-B3D3-4D74F4379A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C081D15-FC51-424B-B3D3-4D74F4379A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C85530BC-C2D9-4939-8EBA-64E0940710F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C85530BC-C2D9-4939-8EBA-64E0940710F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C85530BC-C2D9-4939-8EBA-64E0940710F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C85530BC-C2D9-4939-8EBA-64E0940710F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59489C28-D88E-4788-B5AA-CD88071052D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59489C28-D88E-4788-B5AA-CD88071052D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59489C28-D88E-4788-B5AA-CD88071052D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59489C28-D88E-4788-B5AA-CD88071052D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C081D15-FC51-424B-B3D3-4D74F4379A02} = {AF0018EB-79DA-4058-B759-BA591338DF69}
+		{73B3507D-58CE-47C5-8A59-8A3B8A6324F4} = {9F5D367B-BAC0-4F79-8B92-F2842363F385}
+		{9C9E1483-20E0-41F8-B524-D00FF86B9587} = {E68235BD-B604-4F4A-99F5-455BB6647ECE}
+		{59489C28-D88E-4788-B5AA-CD88071052D7} = {E68235BD-B604-4F4A-99F5-455BB6647ECE}
+		{E8E194C3-CBA6-4436-890B-9AA09C705E3E} = {50346A5E-007D-41FD-9F0F-E0E093B7CADD}
+		{C85530BC-C2D9-4939-8EBA-64E0940710F7} = {DDECFA4C-D8F4-4D19-89A4-3A2FCA7181A8}
+	EndGlobalSection
+EndGlobal

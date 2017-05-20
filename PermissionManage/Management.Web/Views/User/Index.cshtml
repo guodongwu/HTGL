@@ -1,0 +1,240 @@
+﻿<head>
+    <script src="@Url.Content("~/Scripts/js/validator.js")" type="text/javascript"></script>
+</head>
+<body style="padding: 10px; height: 100%; text-align: center;">
+    <div id="maingrid"></div>
+    <div id="_dialog" style="display: none">
+        <form id="form1" method="post" />
+    </div>
+    <script type="text/javascript">
+        var sexData = [{ id: "true", text: '男' }, { id: "false", text: '女' }];
+        var mainform = $("#form1");
+        var fie = [
+                 { display: "用户编号", name: "UID", type: "hidden", attr: [{ field: "UID" }] },
+             {
+                 display: "用户名", name: "UserName", newline: true, type: "text", group: "基本信息",
+                 groupicon: "@Url.Content("~/Content/icons/32X32/user.gif")",
+                 validate: {
+                     required: true, username: true, minlength: 4, maxlength: 25, remote: '/User/CheckUserNameExist',
+                     messages: { required: '请输入用户名', remote: '用户名已经存在!' }
+                 }
+             },
+             {
+                 display: "部门", name: "DepartmentDID", newline: false, type: "select", comboboxName: "DeptName",
+                 options: {
+                     tree: {
+                         url: '/Department/GetDepartmentTree?idfield=0&textfield=text&pidfield=10000',
+                         checkbox: false,
+                         nodeWidth: 220
+                     }, valueFieldID: "DepartmentDID"
+                 }
+             },
+             { display: "密码", name: "UserPassword", newline: true, type: "password", validate: { maxlength: 50, required: true, messages: { required: '请输入密码' } } },
+             {
+                 display: "确认密码", name: "LoginPassword2", newline: false, type: "password",
+                 validate: { maxlength: 50, required: true, equalTo: '#UserPassword', messages: { required: '请输入密码', equalTo: '两次密码输入不一致' } }
+             },
+             { display: "真实姓名", name: "RealName", newline: true, type: "text", validate: { required: true, minlength: 1, maxlength: 50, messages: { required: '请输入姓名', maxlength: '名字过长' } } },
+             {
+                 display: "角色", name: "userRoles", newline: false, type: "select",
+                 comboboxName: "userRoleSelect", options: { valueFieldID: "userRoles", url: "/Role/GetRolesForSelect?idfield=id&textfield=text", isMultiSelect: true, split: ',' }
+             },
+             { display: "性别", name: "Sex", newline: true, type: "select", comboboxName: "SexName", options: { valueFieldID: "Sex", data: sexData, isMultiSelect: false }, validate: { required: true }, group: "其他信息", groupicon: "@Url.Content("~/Content/icons/32X32/communication.gif")" },
+             { display: "电话", name: "Phone", newline: false, type: "text", validate: { maxlength: 50 } },
+             { display: "电子邮件", name: "Email", newline: true, type: "text", validate: { maxlength: 50 } },
+             { display: "QQ", name: "QQ", newline: false, type: "text", validate: { maxlength: 50 } },
+             { display: "昵称", name: "NickName", newline: true, type: "text", validate: { maxlength: 50 } },
+             { display: "地址", name: "Address", labelWidth: 80, width: 400, space: 20, type: "textarea" }
+        ];
+             function showdetail() {
+                 //初始化一些操作
+                 $("#form1")[0].reset();
+                 $("input").val("");
+                 $("a[class='l-checkbox l-checkbox-checked']").removeClass("l-checkbox-checked");
+                 //移除只读属性
+                 $("input,select,textarea", $("#form1")).removeAttr("readonly");
+                 $("#form1").ligerForm({
+                     //validate: v,
+                     inputWidth: 150, labelWidth: 80, space: 20,
+                     fields: fie
+                 });
+
+                 //验证
+                 jQuery.metadata.setType("attr", "validate");
+                 iTools.validate(mainform);
+             }
+
+             var columns = [
+                 { display: "用户ID", name: "UID", hide: true, width: 0, type: "text", align: "left" },
+                 { display: "帐号", name: "UserName", width: 80, type: "text", align: "left" },
+                 { display: "真实姓名", name: "RealName", width: 100, type: "text", align: "left" },
+                 {
+                     display: "性别", name: "Sex", width: 40, type: "text", align: "left", render:
+                     function (item) {
+                         if (item.Sex)
+                             return "男";
+                         else
+                             return "女";
+                     }
+                 },
+                {
+                    display: "状态", name: "IsVisible", width: 80, type: "text", align: "left", render:
+                     function (item) {
+                         if (item.IsVisible)
+                             return "正常";
+                         else
+                             return "冻结";
+                     }
+                },
+                 { display: "电话", name: "Phone", width: 100, type: "text", align: "left" },
+                 { display: "电子邮件", name: "Email", width: 180, type: "text", align: "left" },
+                 { display: "QQ", name: "QQ", width: 180, type: "text", align: "left" },
+                 { display: "昵称", name: "NickName", width: 180, type: "text", align: "left" },
+                 { display: "地址", name: "Address", width: 180, type: "textarea", align: "left" }
+             ];
+
+             //列表结构
+             var grid = $("#maingrid").ligerGrid({
+                 columns: columns, dataAction: 'server', pageSize: 20, toolbar: {},
+                 url: '/User/GetUserForGrid', sortName: 'UserID',
+                 width: '98%', height: '100%', heightDiff: -10, checkbox: false
+             });
+
+             //加载toolbar
+             iTools.loadToolbar(grid, toolbarBtnItemClick);
+
+             //工具条事件
+             function toolbarBtnItemClick(item) {
+                 switch (item.id) {
+                     case "Add":
+                         showdetail();
+                         _base.add({
+                             width: 550, height: 450, isResize: true, dom: $("#form1"), buttons:
+                             [
+                             {
+                                 text: '保存', onclick: function (item, dialog) {
+                                     if (!mainform.valid()) return; else _base.addsave($("#form1"), "Add");
+                                 }
+                             },
+                             { text: '取消', onclick: function (item, dialog) { dialog.hide(); } }]
+                         });
+                         break;
+                     case "Detail":
+                         var selected = grid.getSelected();
+                         if (!selected) { iTools.tip('请选择行!'); return }
+                         showdetail();
+                         SetValue(selected.UID, "1");
+                         _base.update({
+                             title: '查看', width: 550, height: 450, isResize: true, dom: $("#form1"), buttons:
+                                 [{ text: '关闭', onclick: function (item, dialog) { dialog.hide(); } }]
+                         });
+                         break;
+                     case "Update":
+                         var selected = grid.getSelected();
+                         if (!selected) { iTools.tip('请选择行!'); return }
+                         showdetail();
+                         SetValue(selected.UID);
+                         _base.update({
+                             width: 550, height: 450, isResize: true, dom: $("#form1"), buttons:
+                             [
+                             {
+                                 text: '保存', onclick: function (item, dialog) {
+                                     if (!mainform.valid()) return;
+                                     else _base.updatesave($("#form1"), "Update");
+                                 }
+                             },
+                             { text: '取消', onclick: function (item, dialog) { dialog.hide(); } }]
+                         });
+                         //_base.update(null, '修改用户信息', '/User/Detail?ID=' + selected.UID);
+                         break;
+                     case "Delete":
+                         $.ligerDialog.confirm('确定删除吗(该删除操作只是软删除)?', function (confirm) {
+                             if (confirm) {
+                                 var selected = grid.getSelected();
+                                 if (selected) {
+                                     if (!selected.UID) {
+                                         grid.deleteRow(selected);
+                                         return;
+                                     }
+                                     var data = selected;
+                                     data = _base.progressNullValue(data);
+                                     //data.UID = selected.UID;
+                                     $.ajax({
+                                         url: '/User/Delete',
+                                         loading: '正在删除中...',
+                                         data: data,
+                                         success: function (data) {
+                                             if (data == "CanNotDelete")
+                                                 iTools.showError('不能针对超级管理员用户进行删除操作');
+                                             else
+                                                 iTools.tip('删除成功!');
+                                             grid.loadData();
+                                         },
+                                         error: function (message) {
+                                             iTools.showError(message);
+                                         }
+                                     });
+                                 }
+                                 else {
+                                     iTools.tip('请选择行!');
+                                 }
+                             }
+                         });
+                         break;
+                     case "RealDelete":
+                         $.ligerDialog.confirm('确定删除吗(该删除操作将会永久删除,一旦删除将无法挽回)?', function (confirm) {
+                             if (confirm) {
+                                 var selected = grid.getSelected();
+                                 if (selected) {
+                                     if (!selected.UID) {
+                                         grid.deleteRow(selected);
+                                         return;
+                                     }
+                                     var data = selected;
+                                     //data.MID = selected.MID;
+                                     $.ajax({
+                                         url: '/User/RealDelete',
+                                         loading: '正在删除中...',
+                                         data: data,
+                                         success: function (data) {
+                                             if (data == "CanNotDelete")
+                                                 iTools.showError('不能针对超级管理员用户进行删除操作');
+                                             else
+                                                 iTools.tip('删除成功!');
+                                             grid.loadData();
+                                         },
+                                         error: function (message) {
+                                             iTools.showError(message);
+                                         }
+                                     });
+                                 }
+                                 else {
+                                     iTools.tip('请选择行!');
+                                 }
+                             }
+                         });
+                         break;
+                 }
+             }
+             //赋值
+             function SetValue(UID, IsView) {
+                 $.ajax({
+                     url: "/User/GetUInfo",
+                     data: { UID: UID },
+                     datatype: 'json',
+                     success: function (data) {
+                         _base.setFields(data, $("#form1"));
+                         $("#UserName", $("#form1")).attr("readonly", "readonly").removeAttr("validate");
+                         $("#UserPassword", $("#form1")).attr("readonly", "readonly");
+                         $("#LoginPassword2", $("#form1")).attr("readonly", "readonly");
+                         $("#LoginPassword2", $("#form1")).removeAttr("validate");
+                         if (IsView && IsView == "1")
+                             $("input,select,textarea").attr("readonly", "readonly");
+                     }
+                 });
+             }
+             function f_reload() {
+                 grid.loadData();
+             }
+    </script>
+</body>

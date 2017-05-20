@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>选择控制器</title>
+
+    <script type="text/javascript">
+        var g = null;
+        $(function () {
+            g = $("#controllgrid").ligerGrid({
+                columns: [
+                { display: '菜单', name: 'ControllerName', align: 'left', width: 130 },
+                { display: '路径', name: 'LinkUrl', isSort: false, width: 300, align: 'left' },
+                { display: '菜单描述', name: 'Description', isSort: false, width: 200, minWidth: 60 },
+
+                ], pageSize: 10, checkbox: false,
+                url: '@Url.Content("/Menus/GetAllController")',
+                width: '100%', height: '100%'
+            });
+            $("#pageloading").hide();
+        });
+        function f_select() {
+            return g.getSelectedRow();
+        }
+
+    </script>
+
+</head>
+
+<body style="padding: 6px; overflow: hidden;">
+    <div id="controllgrid" style="margin: 0; padding: 0"></div>
+
+    <div style="display: none;">
+
+        <!-- g data total ttt -->
+
+    </div>

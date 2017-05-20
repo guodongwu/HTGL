@@ -1,0 +1,67 @@
+﻿<script type="text/javascript" src="@Url.Content("~/Scripts/js/validator.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        var uid=@ViewBag.UID;
+        var IsView='@ViewBag.IsView';
+        var sexData = [{ id: 1, text: '男' }, { id: 0, text: '女' }];
+        //创建表单结构 
+        $.metadata.setType("attr", "validate");
+        iTools.validate($("#form1"));
+        $("#form1").ligerForm({
+            inputWidth: 150, labelWidth: 80, space: 20, validate: true,
+            fields: [
+             { display: "用户编号", name: "UID", type: "hidden", attr: [{ field: "UID" }] },
+         {
+             display: "用户名", name: "UserName", newline: true, type: "text", group: "基本信息",
+             groupicon: "@Url.Content("~/Content/icons/32X32/user.gif")",
+             validate: {
+                 required: true, username: true, minlength: 4, maxlength: 25, remote: '/User/CheckUserNameExist',
+                 messages: { required: '请输入用户名', remote: '用户名已经存在!' }
+             }
+         },
+         {
+             display: "部门", name: "DepartmentDID", newline: false, type: "select", comboboxName: "DeptName",
+             options: {
+                 tree: {
+                     url: '/Department/GetDepartmentTree?idfield=0&textfield=text&pidfield=10000',
+                     checkbox: false,
+                     nodeWidth: 220
+                 }, valueFieldID: "DepartmentDID"
+             }
+         },
+         { display: "密码", name: "UserPassword", newline: true, type: "password", validate: { maxlength: 50, required: true, messages: { required: '请输入密码' } } },
+         {
+             display: "确认密码", name: "LoginPassword2", newline: false, type: "password",
+             validate: { maxlength: 50, required: true, equalTo: '#UserPassword', messages: { required: '请输入密码', equalTo: '两次密码输入不一致' } }
+         },
+         { display: "真实姓名", name: "RealName", newline: true, type: "text", validate: { required: true, minlength: 1, maxlength: 50, messages: { required: '请输入姓名', maxlength: '名字过长' } } },
+         {
+             display: "角色", name: "userRole", newline: false, type: "select",
+             comboboxName: "userRoleSelect", options: { valueFieldID: "userRoles", url: "/Role/GetRolesForSelect?idfield=id&textfield=text", isMultiSelect: true, split: ',' }
+         },
+         { display: "性别", name: "Sex", newline: true, type: "select", comboboxName: "SexName", options: { valueFieldID: "sexValue", data: sexData, isMultiSelect: false }, validate: { required: true }, group: "其他信息", groupicon: "@Url.Content("~/Content/icons/32X32/communication.gif")" },
+         { display: "电话", name: "Phone", newline: false, type: "text", validate: { maxlength: 50 } },
+         { display: "电子邮件", name: "Email", newline: true, type: "text", validate: { maxlength: 50 } },
+         { display: "QQ", name: "QQ", newline: false, type: "text", validate: { maxlength: 50 } },
+         { display: "昵称", name: "NickName", newline: true, type: "text", validate: { maxlength: 50 } },
+         { display: "地址", name: "Address", labelWidth: 80, width: 400, space: 20, type: "textarea" }
+            ]
+        });
+
+        if (uid && uid > 0) {
+            $.get("GetUInfo", { UID: uid }, function (entity) {
+                $.toJSON(entity);
+                _base.setFields(entity, $("#form1"));
+            });
+            $("#UserName").attr("readonly", "readonly").removeAttr("validate");
+            $("#UserPassword").attr("readonly", "readonly");
+            $("#LoginPassword2").attr("readonly", "readonly");
+            $("#LoginPassword2").removeAttr("validate");
+            if(IsView&&IsView=="1")
+                $("input,select,textarea").attr("readonly", "readonly");
+        }
+    });
+</script>
+<body style="padding: 10px">
+    <form id="form1"></form>
+</body>

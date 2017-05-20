@@ -75,5 +75,11 @@ namespace HTGL.Data.Repositories.Impl
             : base()
         { }
     }
+    public class SysDepartmentRepository : BaseRepository<SysDepartment, Int32>, ISysDepartmentRepository
+    {
+        public SysDepartmentRepository(IUnitOfWork unitOfWork)
+            : base()
+        { }
+    }
 }
 

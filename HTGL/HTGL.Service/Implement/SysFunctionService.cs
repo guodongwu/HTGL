@@ -43,12 +43,13 @@ namespace HTGL.Service.Implement
 
         public OperationResult Save(SysFunction sysFunction)
         {
-            throw new NotImplementedException();
+            int result = _sysFunctionRepository.Update(sysFunction);
+            return new OperationResult(result > 0 ? OperationResultType.Success : OperationResultType.Error, "", sysFunction.FunctionId);
         }
 
         public SysFunction FindBy(Func<SysFunction, bool> @where)
         {
-            throw new NotImplementedException();
+            return SysFunctions.FirstOrDefault(where);
         }
 
         public List<SysFunction> FindAll()

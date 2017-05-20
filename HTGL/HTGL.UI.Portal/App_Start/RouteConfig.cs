@@ -14,10 +14,10 @@ namespace HTGL.UI.Portal
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                 "Default",
-                 "{controller}/{action}/{id}",
-                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                 new string[] { "HTGL.UI.Portal.Controllers" }
+                "Default",
+                "{controller}/{action}/{id}",
+                new {controller = "Home", action = "Index", id = UrlParameter.Optional},
+                new string[] {"HTGL.UI.Portal.Controllers"}
             );
         }
     }

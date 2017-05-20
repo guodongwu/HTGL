@@ -1,0 +1,156 @@
+﻿<body style="padding: 10px; height: 100%; text-align: center;">
+    <input type="hidden" id="MenuNo" value="PublicDictionary" />
+    <div id="maingrid"></div>
+    <div id="searchInfo" style="background-color: white; display: none; border: 1px solid #AECAF0; z-index: 9999">
+        <form id="form"></form>
+    </div>
+    <div id="detailInfo" style="display: none">
+        <form id="detailform"></form>
+    </div>
+    <script type="text/javascript">
+        $("#form").ligerForm({
+            fields: [
+            { display: "分组名", name: "GroupName", newline: true, labelWidth: 100, width: 220, space: 30, type: "text", cssClass: "field" },
+           { display: "分组键值", name: "PubValue", newline: true, labelWidth: 100, width: 220, space: 30, type: "text", cssClass: "field" },
+            ],
+            buttons: [
+                {
+                    text: '查询', width: 60, click: function () {
+                        var groupname = $("input[ligeruiid=GroupName]").val();
+                        var pubvalue = $("input[ligeruiid=PubValue]").val();
+                        grid.loadServerData({ GroupName: groupname, PubValue: pubvalue });
+                    }
+                }
+            ]
+        });
+
+        function showdetail() {
+            $("#detailform").ligerForm({
+                //validate: true,
+                fields: [
+                    { name: "PID", type: "hidden", attr: { "field": "PID" } },
+                    { display: "分组名", type: "text", name: "PubGroupName", newline: true, attr: { "field": "PubGroupName" } },
+                    { display: "分组键", type: "text", name: "PubKey", newline: true, attr: { "field": "PubKey" } },
+                    { display: "分组键值", type: "text", name: "PubValue", newline: true, attr: { "field": "PubValue" } },
+                    //{ display: "是否可见", type: "checkbox", name: "IsVisible", newline: true, attr: { "field": "IsVisible" } },
+                    { display: "排序值", type: "number", name: "Sort", newline: true, attr: { "field": "Sort" } },
+                ]
+            });
+        }
+
+        //列表结构
+        var grid = $("#maingrid").ligerGrid({
+            columns: [
+            { hide: true, name: 'PID' },
+            { display: "分组名", name: "PubGroupName", width: 100 },
+            { display: "分组键", name: "PubKey", width: 120 },
+            { display: "分组键值", name: "PubValue", width: 120 },
+             {
+                 display: "是否可见", name: "IsVisible", width: 120, render: function (item) {
+                     if (item.IsVisible)
+                         return "显示";
+                     else
+                         return "隐藏";
+                 }
+             },
+             { display: "排序值", name: "Sort", width: 180 }
+            ],
+            dataAction: 'server', pageSize: 20, toolbar: {},
+            url: '/PublicDictionary/GetSearchData', width: '98%', height: '100%',
+            heightDiff: -10, checkbox: false
+        });
+
+        //加载toolbar
+        iTools.loadToolbar(grid, toolbarBtnItemClick);
+
+        //工具条事件
+        function toolbarBtnItemClick(item) {
+            switch (item.id) {
+                case "Add":
+                    showdetail();
+                    _base.add({
+                        width: 350, height: 280, isResize: true, dom: $("#detailInfo")
+                    });
+                    break;
+                case "Update":
+                    var selected = grid.getSelected();
+                    if (!selected) { iTools.tip('请选择行!'); return }
+                    showdetail();
+                    liger.get("detailform").setData(selected);
+                    _base.update({
+                        width: 350, height: 280, isResize: true, dom: $("#detailInfo")
+                    });
+                    break;
+                case "Delete":
+                    $.ligerDialog.confirm('确定删除吗(该删除操作只是软删除)?', function (confirm) {
+                        if (confirm) {
+                            var selected = grid.getSelected();
+                            if (selected) {
+                                if (!selected.PID) {
+                                    grid.deleteRow(selected);
+                                    return;
+                                }
+                                var data = selected;
+                                data.PID = selected.PID;
+                                data = _base.progressNullValue(data);
+                                $.ajax({
+                                    url: '/PublicDictionary/Delete',
+                                    loading: '正在删除中...',
+                                    data: data,
+                                    success: function () {
+                                        iTools.tip('删除成功!');
+                                        grid.loadData();
+                                        //treefresh();
+                                    },
+                                    error: function (message) {
+                                        iTools.showError(message);
+                                    }
+                                });
+                            }
+                            else {
+                                iTools.tip('请选择行!');
+                            }
+                        }
+                    });
+                    break;
+                case "RealDelete":
+                    $.ligerDialog.confirm('确定删除吗(该删除操作将会永久删除,一旦删除将无法挽回)?', function (confirm) {
+                        if (confirm) {
+                            var selected = grid.getSelected();
+                            if (selected) {
+                                if (!selected.PID) {
+                                    grid.deleteRow(selected);
+                                    return;
+                                }
+                                $.ajax({
+                                    url: '/PublicDictionary/RealDelete',
+                                    loading: '正在删除中...',
+                                    data: { PID: selected.PID },
+                                    success: function () {
+                                        iTools.tip('删除成功!');
+                                        grid.loadData();
+                                        //treefresh();
+                                    },
+                                    error: function (message) {
+                                        iTools.showError(message);
+                                    }
+                                });
+                            }
+                            else {
+                                iTools.tip('请选择行!');
+                            }
+                        }
+                    });
+                    break;
+                case "GetSearchData":
+                    var div = $("#searchInfo"); //要浮动在这个元素旁边的层
+                    var self = $("div[toolbarid=GetSearchData]");
+                    iTools.searchInit(div, self);
+                    break;
+            }
+        }
+        function f_reload() {
+            grid.loadData();
+        }
+    </script>
+</body>

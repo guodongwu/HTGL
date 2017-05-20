@@ -50,6 +50,7 @@
     <Compile Include="Implement\SysUserRoleService.cs" />
     <Compile Include="Implement\SysUserService.cs" />
     <Compile Include="Implement\SysDbBackupService.cs" />
+    <Compile Include="Implement\SysDepartmentService.cs" />
     <Compile Include="Interface\ISysFunctionService.cs" />
     <Compile Include="Interface\ISysLogService.cs" />
     <Compile Include="Interface\ISysDictService.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Interface\ISysUserService.cs" />
     <Compile Include="Interface\ISysRoleService.cs" />
     <Compile Include="Interface\ISysUserRoleService.cs" />
+    <Compile Include="Interface\ISysDepartmentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

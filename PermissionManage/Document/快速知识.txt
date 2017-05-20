@@ -1,0 +1,68 @@
+﻿http://msdn.microsoft.com/zh-cn/library/vstudio/system.componentmodel.dataannotations(v=vs.110).aspx
+
+[Key]  //标识一个属性作为主键，即使它不符合类名+Id的格式。
+
+[MaxLength(500)]  //限制一个字符串属性最多有多少字，其对应的数据表字段也会是nvarchar(500)
+
+[Required] //属性必须存在，如果作用于外键，则有级联删除功能。如果用Nullable<T>指定一个值类型（如int）为可空，将会映射到数据库的一个可空字段。
+
+[Required(ErrorMessage = "必须填写密码")] 
+
+[Column(TypeName = "image")] //将属性和指定的字段名映射，将照片这种字节类型映射到字段时会有用。
+public byte[] Photo { get; set; }
+
+[Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Identifier字段会自动产生guid值，如果Identifier是int类型，那字段就是自增类型。
+public Guid Identifier { get; set; } 
+
+[Key, DatabaseGenerated(DatabaseGeneratedOption.None)] //不自动生成键值
+public int Id { get; set; } 
+
+DatabaseGeneratedOption.Computed用于指定一个映射到数据库的字段是通过计算得到的（不明确）
+
+[Timestamp] //将这个属性指定为时间戳字段（用于并发控制）
+public byte[] RowVersion { get; set; }
+
+[DataType(DataType.Date)]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Install-Package EntityFramework --安装EF
+
+Enable-Migrations --启用迁移
+
+Add-Migration name --添加表
+
+Update-Database --更新数据库
+
+Enable-Migrations -ProjectName Management.Dao -StartUpProjectName Management.Web -Verbose
+
+Add-Migration -ProjectName Management.Dao ManagementDBContext
+
+Update-Database -ProjectName Management.Dao
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[Authorize]
+[Authorize(Roles = "Support")]
+[AllowAnonymous]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Use ActionLink().....in App_Code @helper  http://mikelai.blog.163.com/blog/static/18411126620117120112841/
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//视图绑定时间格式的字段
+@string.Format("{0:yyyy-MM-dd}", DateTime.Parse(@Html.DisplayFor(modelItem => item.ExamTime).ToString()))
+//视图绑定字段.使用三元表达式
+@string.Format((@Html.DisplayFor(modelItem => item.Computerized)).ToString() =="0"?"否":"是")
+//执行自定义查询语句
+string sql = " select * from dbo.Questions where 1=1 ";
+var list = db.Database.SqlQuery<Question>(sql).ToList();
+//执行自定义增删改语句
+db.Database.ExecuteSqlCommand("update Exams set ExamResult=1 where Id=" + examdetail.ExamsID.ToString());
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+https://nuget.org/packages/SimpleMembershipAdministration
+
+创建数据库用户
+	create login apdba with password='BEFC-C630FA2F9406', default_database=ap
+	create user apdba for login apdba with default_schema=dbo
+	exec sp_addrolemember 'db_owner', 'apdba'
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+匿名对象 dynamic dynEO = new ExpandoObject();
+	var v = new { Amount = 108, Message = "Hello" };

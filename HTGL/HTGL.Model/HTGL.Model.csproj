@@ -66,6 +66,7 @@
     <Compile Include="Configuration\SysRoleConfiguration.cs" />
     <Compile Include="Configuration\SysOrganizeConfiguration.cs" />
     <Compile Include="Configuration\SysDbBackupConfiguration.cs" />
+    <Compile Include="Configuration\SysDepartmentConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysDbBackup.cs" />
     <Compile Include="SysDict.cs" />

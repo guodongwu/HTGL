@@ -1,0 +1,84 @@
+﻿<body style="padding: 10px; height: 100%; text-align: center;">
+    <input type="hidden" id="MenuNo" value="OperateLog" />
+    <div id="maingrid"></div>
+    <div id="receiptInfo" style="background-color: white; display: none; border: 1px solid #AECAF0; z-index: 9999">
+        <form id="form"></form>
+    </div>
+    <script type="text/javascript">
+        $("#form").ligerForm({
+            fields: [
+            { display: "用户名", name: "UserName", newline: true, labelWidth: 100, width: 220, space: 30, type: "text", cssClass: "field" },
+           { display: "IP地址", name: "IPAddress", newline: false, labelWidth: 100, width: 220, space: 30, type: "text", cssClass: "field" },
+           { display: "开始时间", name: "CreateDate", newline: true, labelWidth: 100, width: 220, space: 30, type: "date", cssClass: "field" },
+           { display: "结束时间", name: "EndDate", newline: false, labelWidth: 100, width: 220, space: 30, type: "date", cssClass: "field" }
+            ],
+            buttons: [
+                {
+                    text: '查询', width: 60, click: function () {
+                        var userName = $("input[ligeruiid=UserName]").val();
+                        var ipaddress = $("input[ligeruiid=IPAddress]").val();
+                        var startdt = $("input[ligeruiid=CreateDate]").val();
+                        var enddt = $("input[ligeruiid=EndDate]").val();
+                        grid.loadServerData({ UserName: userName, IPAddress: ipaddress, StartDateTime: startdt, EndDateTime: enddt });
+                    }
+                }
+            ]
+        });
+
+        //列表结构
+        var grid = $("#maingrid").ligerGrid({
+            columns: [
+            { hide: true, name: 'ID' },
+            { display: "操作人ID", name: "UserUID", width: 100 },
+            { display: "操作人名称", name: "UserName", width: 120 },
+            { display: "访问IP地址", isSort: false, name: "IPAddress", width: 120 },
+             { display: "访问时间", name: "CreateDate", type: "date", width: 120 },
+             { display: "控制器名称", name: "ProcessName", width: 180 },
+             { display: "动作名称", name: "MethodName", width: 180 },
+              { display: "控制器备注", isSort: false, name: "ProcessDesc", width: 180, hide: true },
+                { display: "动作备注", isSort: false, name: "MethodDesc", width: 180, hide: true },
+                  { display: "备注", isSort: false, name: "Description", width: 300 }
+            ],
+            dataAction: 'server', pageSize: 20, toolbar: {},
+            url: '/OperateLog/GetLogsGrid?view=OperateLog', sortName: 'CreateDate', sortOrder: 'desc',
+            width: '98%', height: '100%', heightDiff: -10, checkbox: false
+        });
+
+        //加载toolbar
+        iTools.loadToolbar(grid, toolbarBtnItemClick);
+
+        //工具条事件
+        function toolbarBtnItemClick(item) {
+            switch (item.id) {
+                case "DeleteThreeMonthLog":
+                    jQuery.ligerDialog.confirm('确定删除吗?该操作将会删除三个月以前的所有日志?(保留最近三个月的日志)', function (confirm) {
+                        if (confirm)
+                            f_delete();
+                    });
+                    break;
+                case "GetLogsGrid":
+                    var div = $("#receiptInfo"); //要浮动在这个元素旁边的层
+                    var self = $("div[toolbarid=GetLogsGrid]");
+                    iTools.searchInit(div, self);
+                    break;
+            }
+        }
+        function f_reload() {
+            grid.loadData();
+        }
+        function f_delete() {
+            $.ajax({
+                url: '/OperateLog/DeleteThreeMonthLog',
+                loading: '正在删除中...',
+                data: {},
+                success: function () {
+                    iTools.showSuccess('删除成功');
+                    f_reload();
+                },
+                error: function (message) {
+                    iTools.showError(message);
+                }
+            });
+        }
+    </script>
+</body>
